@@ -27,7 +27,7 @@ export const Navbar = () => {
 							<span className="sr-only">(current)</span>
 						</a>
 					</li>
-					<li className="nav-item">
+					{/* <li className="nav-item">
 						<a className="nav-link" href="#">
 							Registro
 						</a>
@@ -41,14 +41,14 @@ export const Navbar = () => {
 						<a className="nav-link" href="#">
 							Provincias
 						</a>
-					</li>
+					</li> */}
 				</ul>
-				<form className="form-inline my-2 my-lg-0">
-					<input className="form-control mr-sm-2" type="text" placeholder="Search" />
+
+				<div className="form-inline my-2 my-lg-0">
 					<button className="btn btn-secondary my-2 my-sm-0" type="submit">
-						Search
+						Acceso PYMES
 					</button>
-				</form>
+				</div>
 			</div>
 		</nav>
 	);
