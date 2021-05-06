@@ -17,40 +17,22 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="text-center mt-5">
-			<h1 />
+		<div className="text-center">
 			<div className="">
 				<img src={heroCustom} className="img-fluid" />
 			</div>
-			<div className="alert alert-info">{store.message || ""}</div>
+			{/* <div className="alert alert-info">{store.message || ""}</div> */}
 			<span>Busc@PYMES</span>
-			<div className="text-center">
-				<ul className="text-center">
-					<li>
-						<ProvinceCard route="alajuela" provinceName="Alajuela" imagen={alajuelaImg} />
-					</li>
-					<li>
-						<ProvinceCard route="cartago" provinceName="Cartago" imagen={cartagoImg} />
-					</li>
-					<li>
-						<ProvinceCard route="guanacaste" provinceName="Guanacaste" imagen={guanacasteImg} />
-					</li>
-
-					<li>
-						<ProvinceCard route="heredia" provinceName="Heredia" imagen={herediaImg} />
-					</li>
-
-					<li>
-						<ProvinceCard route="limon" provinceName="Limón" imagen={limonImg} />
-					</li>
-					<li>
-						<ProvinceCard route="puntarenas" provinceName="Puntarenas" imagen={puntarenasImg} />
-					</li>
-
-					<li>
-						<ProvinceCard route="sanjose" provinceName="San José" imagen={sanjoseImg} />
-					</li>
-				</ul>
+			<div className="container-fluid">
+				<div className="d-flex justify-content-between flex-wrap">
+					<ProvinceCard route="alajuela" provinceName="Alajuela" imagen={alajuelaImg} />
+					<ProvinceCard route="cartago" provinceName="Cartago" imagen={cartagoImg} />
+					<ProvinceCard route="guanacaste" provinceName="Guanacaste" imagen={guanacasteImg} />
+					<ProvinceCard route="heredia" provinceName="Heredia" imagen={herediaImg} />
+					<ProvinceCard route="limon" provinceName="Limón" imagen={limonImg} />
+					<ProvinceCard route="puntarenas" provinceName="Puntarenas" imagen={puntarenasImg} />
+					<ProvinceCard route="sanjose" provinceName="San José" imagen={sanjoseImg} />
+				</div>
 			</div>
 		</div>
 	);
