@@ -16,6 +16,8 @@ import { Registropymes } from "./pages/registropymes";
 import { Actualizardatos } from "./pages/actualizardatos";
 import injectContext from "./store/appContext";
 
+import { ProvinciaGenerico } from "./pages/testProvinciaGenerico";
+
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 
@@ -33,14 +35,30 @@ const Layout = () => {
 					<Switch>
 						<Route exact path="/" component={Home} />
 						<Route exact path="/home" component={Home} />
-						<Route exact path="/provincia" component={Provincia} />
-						<Route exact path="/alajuela" component={Alajuela} />
-						<Route exact path="/heredia" component={Heredia} />
-						<Route exact path="/guanacaste" component={Guanacaste} />
-						<Route exact path="/sanjose" component={Sanjose} />
-						<Route exact path="/puntarenas" component={Puntarenas} />
-						<Route exact path="/limon" component={Limon} />
-						<Route exact path="/cartago" component={Cartago} />
+						<Route exact path="/provincia/:nombre">
+							<ProvinciaGenerico />
+						</Route>
+						<Route exact path="/alajuela">
+							<ProvinciaGenerico id={1} />
+						</Route>
+						<Route exact path="/heredia">
+							<ProvinciaGenerico id={3} />
+						</Route>
+						<Route exact path="/guanacaste">
+							<ProvinciaGenerico id={6} />
+						</Route>
+						<Route exact path="/sanjose">
+							<ProvinciaGenerico id={2} />
+						</Route>
+						<Route exact path="/puntarenas">
+							<ProvinciaGenerico id={5} />
+						</Route>
+						<Route exact path="/limon">
+							<ProvinciaGenerico id={4} />
+						</Route>
+						<Route exact path="/cartago">
+							<ProvinciaGenerico id={7} />
+						</Route>
 						<Route exact path="/registropymes" component={Registropymes} />
 						<Route exact path="/actualizardatos" component={Actualizardatos} />
 						<Route exact path="/single/:theid" component={Single} />
