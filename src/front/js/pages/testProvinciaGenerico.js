@@ -4,29 +4,28 @@ import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
 
-const ajusteNombreProvincia = nombreProvincia => {
+function ajusteNombreProvincia(nombreProvincia) {
 	switch (nombreProvincia) {
 		case "sanjose":
-			return "San José";
+			return "San Jose";
 			break;
 		case "limon":
-			return "San José";
+			return "Limón";
 			break;
 		default:
-			//return "Alajuela";
 			return nombreProvincia.charAt(0).toUpperCase() + nombreProvincia.slice(1);
 	}
-};
+}
 
 export const ProvinciaGenerico = props => {
 	const { store, actions } = useContext(Context);
 	const params = useParams();
 
-	let idProvincia = store.provincias.find(x => x.nombre === ajusteNombreProvincia(params.nombre)).id;
-
 	useEffect(() => {
 		actions.loadProvincia(idProvincia);
 	}, []);
+
+	let idProvincia = store.provincias.find(x => x.nombre === ajusteNombreProvincia(params.nombre)).id;
 
 	return (
 		<div className="container">
@@ -51,7 +50,7 @@ export const ProvinciaGenerico = props => {
 					</tr>
 				</thead>
 				<tbody>
-					{store.alajuela.map((item, index) => (
+					{store.provincia.map((item, index) => (
 						<tr key={index}>
 							<th scope="row">{item.id}</th>
 							<td>{store.provincias.find(x => x.id === item.id_provincia).nombre}</td>

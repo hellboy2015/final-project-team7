@@ -35,29 +35,8 @@ const Layout = () => {
 					<Switch>
 						<Route exact path="/" component={Home} />
 						<Route exact path="/home" component={Home} />
-						<Route exact path="/provincia/:nombre">
+						<Route exact path="/:nombre">
 							<ProvinciaGenerico />
-						</Route>
-						<Route exact path="/alajuela">
-							<ProvinciaGenerico id={1} />
-						</Route>
-						<Route exact path="/heredia">
-							<ProvinciaGenerico id={3} />
-						</Route>
-						<Route exact path="/guanacaste">
-							<ProvinciaGenerico id={6} />
-						</Route>
-						<Route exact path="/sanjose">
-							<ProvinciaGenerico id={2} />
-						</Route>
-						<Route exact path="/puntarenas">
-							<ProvinciaGenerico id={5} />
-						</Route>
-						<Route exact path="/limon">
-							<ProvinciaGenerico id={4} />
-						</Route>
-						<Route exact path="/cartago">
-							<ProvinciaGenerico id={7} />
 						</Route>
 						<Route exact path="/registropymes" component={Registropymes} />
 						<Route exact path="/actualizardatos" component={Actualizardatos} />
