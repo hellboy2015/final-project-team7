@@ -1,10 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "../../styles/demo.scss";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 
 export const Alajuela = alajuela => {
 	const { store, actions } = useContext(Context);
+
+	useEffect(() => {
+		actions.loadAlajuela();
+	}, []);
 
 	return (
 		<div className="container">
