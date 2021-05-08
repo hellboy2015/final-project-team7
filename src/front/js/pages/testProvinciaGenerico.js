@@ -29,7 +29,7 @@ export const ProvinciaGenerico = props => {
 
 	return (
 		<div className="container">
-			<table className="table table-sl table-dark">
+			<table className="table table-responsive table-hover table-dark">
 				<thead>
 					<tr>
 						<th scope="col">#</th>
@@ -43,6 +43,8 @@ export const ProvinciaGenerico = props => {
 						<th scope="col">Servicio</th>
 
 						<th scope="col">Teléfono</th>
+
+						<th scope="col">Otras Señas</th>
 
 						<th scope="col">Facebook</th>
 
@@ -62,6 +64,7 @@ export const ProvinciaGenerico = props => {
 							</td>
 							<td>{store.servicios.find(x => x.id === item.id_tiposServicio).tipo}</td>
 							<td>{item.telefono}</td>
+							<td>{item.otrassenas}</td>
 							<td> {item.facebook}</td>
 							<td>{item.instagram}</td>
 						</tr>

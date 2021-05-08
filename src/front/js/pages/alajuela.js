@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+/*import React, { useContext, useEffect } from "react";
 import "../../styles/demo.scss";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
@@ -63,3 +63,4 @@ Alajuela.propTypes = {
 	facebook: PropTypes.string
 };
 export default Alajuela;
+*/

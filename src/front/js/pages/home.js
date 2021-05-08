@@ -14,8 +14,6 @@ import puntarenasImg from "../../img/Puntarenas.jpg";
 import sanjoseImg from "../../img/SanJose.jpg";
 
 export const Home = () => {
-	const { store, actions } = useContext(Context);
-
 	return (
 		<div className="text-center">
 			<div className="">

@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home";
-import { Alajuela } from "./pages/alajuela";
 import { Single } from "./pages/single";
 import { Registropymes } from "./pages/registropymes";
 import { Actualizardatos } from "./pages/actualizardatos";
