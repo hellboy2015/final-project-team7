@@ -9,45 +9,48 @@ export const Single = props => {
 	const params = useParams();
 
 	return (
-		<div className="container bg-dark">
-			<div className="row justify-content-center text-white">
+		<div className="container bg-silver">
+			<div className="row justify-content-center text-dark">
 				<h1>
 					Pyme <br />
 					{store.provincia[params.theid].nombre}
 				</h1>
 				<div className="container">
-					<div className=" row justify-content-center">
-						<img className="col-6 card-img-top singleImg" src="https://picsum.photos/id/237/400/300" />
+					<div className=" row justify-content-center ">
+						<img className="img-fluid img-thumbnail" src="https://picsum.photos/300" />
 					</div>
 				</div>
-				<div className="col text-white">
-					Provincia:
-					<br />
-					{store.provincia[params.theid].id_provincia}
-				</div>
+				<div className="container ">
+					<div className="col  ">
+						<br />
+						Provincia:
+						{store.provincia[params.theid].id_provincia}
+					</div>
 
-				<div className="col text-white">
-					Cantón:
-					<br />
-					{store.provincia[params.theid].id_canton}
+					<div className="col ">
+						<br />
+						Cantón:
+						{store.provincia[params.theid].id_canton}
+					</div>
+
+					<div className="col ">
+						<br />
+						Tipo Servicio:
+						{store.provincia[params.theid].id_tiposServicio}
+					</div>
+					<div className="col ">
+						<br />
+						Teléfono: {store.provincia[params.theid].telefono}
+					</div>
+					<div className="col ">
+						<br />
+						Facebook: {store.provincia[params.theid].facebook}
+					</div>
+					<div className="col ">
+						<br />
+						Instagram: {store.provincia[params.theid].instagram}
+					</div>
 				</div>
-			</div>
-			<div className="col text-white">
-				Tipo Servicio:
-				<br />
-				{store.provincia[params.theid].id_tiposServicio}
-			</div>
-			<div className="col text-white">
-				<br />
-				Teléfono: {store.provincia[params.theid].telefono}
-			</div>
-			<div className="col text-white">
-				<br />
-				Facebook: {store.provincia[params.theid].facebook}
-			</div>
-			<div className="col text-white">
-				<br />
-				Instagram: {store.provincia[params.theid].instagram}
 			</div>
 		</div>
 	);
