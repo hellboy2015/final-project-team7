@@ -56,7 +56,7 @@ export const ProvinciaGenerico = props => {
 							<td>{store.provincias.find(x => x.id === item.id_provincia).nombre}</td>
 							<td>{store.cantones.find(x => x.id === item.id_canton).nombre}</td>
 							<td>
-								<Link to={"/single/" + index}>
+								<Link to={"/single/" + item.id}>
 									<span>{item.nombre}</span>
 								</Link>
 							</td>

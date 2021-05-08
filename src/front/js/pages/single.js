@@ -7,13 +7,14 @@ import rigoImageUrl from "../../img/rigo-baby.jpg";
 export const Single = props => {
 	const { store, actions } = useContext(Context);
 	const params = useParams();
+	const pyme = store.provincia.find(x => x.id === parseInt(params.theid));
 
 	return (
 		<div className="container bg-silver">
 			<div className="row justify-content-center text-dark">
 				<h1>
 					Pyme <br />
-					{store.provincia[params.theid].nombre}
+					{pyme.nombre}
 				</h1>
 				<div className="container">
 					<div className=" row justify-content-center ">
@@ -23,32 +24,29 @@ export const Single = props => {
 				<div className="container ">
 					<div className="col  ">
 						<br />
-						Provincia:
-						{store.provincia[params.theid].id_provincia}
+						Provincia: {store.provincias.find(x => x.id === pyme.id_provincia).nombre}
 					</div>
 
 					<div className="col ">
 						<br />
-						Cantón:
-						{store.provincia[params.theid].id_canton}
+						Cantón: {store.cantones.find(x => x.id === pyme.id_canton).nombre}
 					</div>
 
 					<div className="col ">
 						<br />
-						Tipo Servicio:
-						{store.provincia[params.theid].id_tiposServicio}
+						Tipo Servicio: {store.servicios.find(x => x.id === pyme.id_tiposServicio).tipo}
 					</div>
 					<div className="col ">
 						<br />
-						Teléfono: {store.provincia[params.theid].telefono}
+						Teléfono: {pyme.telefono}
 					</div>
 					<div className="col ">
 						<br />
-						Facebook: {store.provincia[params.theid].facebook}
+						Facebook: {pyme.facebook}
 					</div>
 					<div className="col ">
 						<br />
-						Instagram: {store.provincia[params.theid].instagram}
+						Instagram: {pyme.instagram}
 					</div>
 				</div>
 			</div>
