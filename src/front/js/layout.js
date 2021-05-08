@@ -4,12 +4,6 @@ import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home";
 import { Alajuela } from "./pages/alajuela";
-import { Cartago } from "./pages/cartago";
-import { Puntarenas } from "./pages/puntarenas";
-import { Sanjose } from "./pages/sanjose";
-import { Guanacaste } from "./pages/guanacaste";
-import { Limon } from "./pages/limon";
-import { Heredia } from "./pages/heredia";
 import { Single } from "./pages/single";
 import { Registropymes } from "./pages/registropymes";
 import { Actualizardatos } from "./pages/actualizardatos";
