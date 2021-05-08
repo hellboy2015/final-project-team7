@@ -6,6 +6,7 @@ import { Home } from "./pages/home";
 import { Single } from "./pages/single";
 import { Registropymes } from "./pages/registropymes";
 import { Actualizardatos } from "./pages/actualizardatos";
+import { Cambiocontrasena } from "./pages/cambiocontrasena";
 import injectContext from "./store/appContext";
 
 import { ProvinciaGenerico } from "./pages/testProvinciaGenerico";
@@ -32,6 +33,7 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/registropymes" component={Registropymes} />
 						<Route exact path="/actualizardatos" component={Actualizardatos} />
+						<Route exact path="/cambiocontrasena" component={Cambiocontrasena} />
 						<Route exact path="/single/:theid" component={Single} />
 					</Switch>
 					<Footer />

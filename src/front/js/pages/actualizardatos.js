@@ -4,7 +4,7 @@ import { Home } from "./home";
 
 export const Actualizardatos = actualizardatos => {
 	return (
-		<div className="col-lg-6">
+		<div className="col-lg-4 text-white">
 			<div className="form-provincia">
 				<label form="sel1">Provincia:</label>
 				<select className="form-control" id="sel1">
@@ -38,6 +38,10 @@ export const Actualizardatos = actualizardatos => {
 				<label form="usr">Teléfono:</label>
 				<input type="text" className="form-control" id="usr" />
 			</div>
+			<div className="form-Teléfono">
+				<label form="usr">Otras Señas:</label>
+				<input type="text" className="form-control" id="usr" />
+			</div>
 			<div className="form-Instagram">
 				<label form="usr">Instagram:</label>
 				<input type="text" className="form-control" id="usr" />
@@ -45,6 +49,11 @@ export const Actualizardatos = actualizardatos => {
 			<div className="form-Facebook">
 				<label form="usr">Facebook:</label>
 				<input type="text" className="form-control" id="usr" />
+			</div>
+			<div className="col text-center">
+				<button type="submit" className="btn btn-default btn-lg bg-dark text-white mb-0 h1">
+					Ingresar PYME
+				</button>
 			</div>
 		</div>
 	);
