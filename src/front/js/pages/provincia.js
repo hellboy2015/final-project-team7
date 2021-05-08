@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+/*import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { Context } from "../store/appContext";
@@ -26,7 +26,7 @@ export const Provincia = () => {
 							className="list-group-item d-flex justify-content-between"
 							style={{ background: item.background }}>
 							<Link to={"/single/" + index}>
-								<span> {item.title}</span>
+								<span> {item.nombre}</span>
 							</Link>
 						</li>
 					);
@@ -36,3 +36,4 @@ export const Provincia = () => {
 		</div>
 	);
 };
+*/

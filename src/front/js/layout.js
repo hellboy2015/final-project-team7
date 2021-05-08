@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home";
-import { Provincia } from "./pages/provincia";
 import { Alajuela } from "./pages/alajuela";
 import { Cartago } from "./pages/cartago";
 import { Puntarenas } from "./pages/puntarenas";
