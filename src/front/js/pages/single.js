@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
+import "../../styles/registropymes.scss";
 
 export const Single = props => {
 	const { store, actions } = useContext(Context);
@@ -9,7 +10,7 @@ export const Single = props => {
 	const pyme = store.provincia.find(x => x.id === parseInt(params.theid));
 
 	return (
-		<div className="container">
+		<div className="container wrapper">
 			<div className="row justify-content-center text-white">
 				<h1>Pyme {pyme.nombre}</h1>
 			</div>
