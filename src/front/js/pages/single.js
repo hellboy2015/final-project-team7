@@ -1,24 +1,59 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
+import "../../styles/registropymes.scss";
 
 export const Single = props => {
 	const { store, actions } = useContext(Context);
 	const params = useParams();
+	const pyme = store.provincia.find(x => x.id === parseInt(params.theid));
 
 	return (
-		<div className="jumbotron">
-			<h1 className="display-4">This will show the demo element: {store.demo[params.theid].title}</h1>
-			<img src={rigoImageUrl} />
-			<hr className="my-4" />
+		<div className="container wrapper">
+			<div className="row justify-content-center text-white">
+				<h1>Pyme {pyme.nombre}</h1>
+			</div>
+			<div className="row container text-white">
+				<div className="col-md-6">
+					<img className="img-thumbnail" src="https://picsum.photos/300" />
+				</div>
+				<div className="col-md-6">
+					<div className=" row container ">
+						<div className=" col-6 ">
+							<br />
+							Provincia: {store.provincias.find(x => x.id === pyme.id_provincia).nombre}
+						</div>
 
-			<Link to="/">
-				<span className="btn btn-primary btn-lg" href="#" role="button">
-					Back home
-				</span>
-			</Link>
+						<div className="col-6 ">
+							<br />
+							Cantón: {store.cantones.find(x => x.id === pyme.id_canton).nombre}
+						</div>
+
+						<div className="col-6 ">
+							<br />
+							Tipo Servicio: {store.servicios.find(x => x.id === pyme.id_tiposServicio).tipo}
+						</div>
+						<div className="col-6 ">
+							<br />
+							Teléfono: {pyme.telefono}
+						</div>
+						<div className="col-12 ">
+							<br />
+							Otras Señas: {pyme.otrassenas}
+						</div>
+
+						<div className="col 12 ">
+							<br />
+							Facebook: <a href="https://www.facebook.com">{pyme.facebook} </a>
+						</div>
+						<div className="col 12 ">
+							<br />
+							Instagram: <a href="https://www.instagram.com"> {pyme.instagram} </a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 };

@@ -3,9 +3,14 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home";
-import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
+import { Registropymes } from "./pages/registropymes";
+import { Actualizardatos } from "./pages/actualizardatos";
+import { Cambiocontrasena } from "./pages/cambiocontrasena";
+import { Creacionusuario } from "./pages/creacionusuario";
 import injectContext from "./store/appContext";
+
+import { ProvinciaGenerico } from "./pages/testProvinciaGenerico";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -22,18 +27,16 @@ const Layout = () => {
 				<ScrollToTop>
 					<Navbar />
 					<Switch>
-						<Route exact path="/">
-							<Home />
+						<Route exact path="/" component={Home} />
+						<Route exact path="/home" component={Home} />
+						<Route exact path="/provincia/:nombre">
+							<ProvinciaGenerico />
 						</Route>
-						<Route exact path="/demo">
-							<Demo />
-						</Route>
-						<Route exact path="/single/:theid">
-							<Single />
-						</Route>
-						<Route>
-							<h1>Not found!</h1>
-						</Route>
+						<Route exact path="/registropymes" component={Registropymes} />
+						<Route exact path="/actualizardatos" component={Actualizardatos} />
+						<Route exact path="/cambiocontrasena" component={Cambiocontrasena} />
+						<Route exact path="/creacionusuario" component={Creacionusuario} />
+						<Route exact path="/single/:theid" component={Single} />
 					</Switch>
 					<Footer />
 				</ScrollToTop>

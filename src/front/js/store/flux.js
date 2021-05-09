@@ -1,46 +1,71 @@
-const getState = ({ getStore, getActions, setStore }) => {
+const getState = ({ getActions, setStore }) => {
 	return {
 		store: {
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			alajuela: [],
+			cartago: [],
+			heredia: [],
+			limon: [],
+			puntarenas: [],
+			sanjose: [],
+			cantones: [],
+			provincias: [],
+			servicios: [],
+			provincia: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-
-			getMessage: () => {
-				// fetching data from the backend
-				fetch(process.env.BACKEND_URL + "/api/hello")
-					.then(resp => resp.json())
-					.then(data => setStore({ message: data.message }))
-					.catch(error => console.log("Error loading message from backend", error));
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
+			loadCantones: async () => {
+				const response = await fetch("https://busca-pyme.herokuapp.com/api/cantones", {
+					method: "GET"
 				});
 
-				//reset the global store
-				setStore({ demo: demo });
+				const data = await response.json();
+				console.log("cantones", data);
+
+				setStore({ cantones: data });
+			},
+			loadProvincias: async () => {
+				const response = await fetch("https://busca-pyme.herokuapp.com/api/provincias", {
+					method: "GET"
+				});
+
+				const data = await response.json();
+				console.log("provincias", data);
+
+				setStore({ provincias: data });
+			},
+			loadServicios: async () => {
+				const response = await fetch("https://busca-pyme.herokuapp.com/api/servicios", {
+					method: "GET"
+				});
+
+				const data = await response.json();
+				console.log("servicios", data);
+
+				setStore({ servicios: data });
+			},
+			loadProvincia: async id => {
+				const body = {
+					provinciaID: id
+				};
+				const url = "https://busca-pyme.herokuapp.com/api/pymeprovincia";
+				const response = await fetch(url, {
+					method: "POST",
+					body: JSON.stringify(body),
+					headers: {
+						"Content-Type": "application/json",
+						mode: "no-cors",
+						Accept: "*/*"
+					}
+				});
+
+				const data = await response.json();
+
+				console.log("test", data);
+				setStore({ provincia: data });
 			}
 		}
 	};

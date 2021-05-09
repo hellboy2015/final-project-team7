@@ -38,6 +38,7 @@ def pyme():
 
     return jsonify(pyme), 200
 
+
 @api.route('/provincia', methods=['POST'])
 def provincia():
 
