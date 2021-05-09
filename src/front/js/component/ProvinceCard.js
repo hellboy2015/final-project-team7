@@ -15,7 +15,7 @@ export default function ProvinceCard(props) {
 			{/* <img src={props.imagen} className="card-img-top rounded-circle w-custom" /> */}
 
 			<div className="">
-				<Link className="card-title-custom" to={props.route}>
+				<Link className="card-title-custom" to={"/provincia/" + props.route}>
 					{props.provinceName}{" "}
 				</Link>
 			</div>
@@ -23,7 +23,7 @@ export default function ProvinceCard(props) {
 	);
 }
 
-ProvinceCard.PropTypes = {
+ProvinceCard.propTypes = {
 	route: PropTypes.string,
 	provinceName: PropTypes.string
 };

@@ -28,7 +28,7 @@ const Layout = () => {
 					<Switch>
 						<Route exact path="/" component={Home} />
 						<Route exact path="/home" component={Home} />
-						<Route exact path="/:nombre">
+						<Route exact path="/provincia/:nombre">
 							<ProvinciaGenerico />
 						</Route>
 						<Route exact path="/registropymes" component={Registropymes} />
