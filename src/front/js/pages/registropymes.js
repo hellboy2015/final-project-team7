@@ -22,6 +22,13 @@ export const Registropymes = registropymes => {
 									</button>
 								</Link>
 							</div>
+							<div className="bg-dark ml-auto">
+								<Link to="/creacionusuario">
+									<button className="bg-dark text-white-50 navbar-brand mb-0 h1">
+										Creación Usuario
+									</button>
+								</Link>
+							</div>
 						</nav>
 					</li>
 				</ul>

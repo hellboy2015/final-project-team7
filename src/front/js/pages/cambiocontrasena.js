@@ -16,17 +16,17 @@ export const Cambiocontrasena = cambiocontrasena => {
 						<label>Cambio Contraseña</label>
 					</div>
 					<div>
-						<input type="text" placeholder="Username" />
+						<input type="text" placeholder="Correo" />
 						Contraseña Actual
 						<label className="fa fa-user" />
 					</div>
 
 					<div>
-						<input type="password" placeholder="Password" /> Nueva Contraseña
+						<input type="password" placeholder="Contraseña" /> Nueva Contraseña
 						<label className="fa fa-key" />
 					</div>
 					<div>
-						<input type="password" placeholder="Password" /> Confirmar Contraseña
+						<input type="password" placeholder="Confirmar Contraseña" /> Confirmar Contraseña
 						<label className="fa fa-key" />
 					</div>
 					<div>
