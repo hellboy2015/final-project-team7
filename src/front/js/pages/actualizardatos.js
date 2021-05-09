@@ -1,25 +1,43 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { Context } from "../store/appContext";
 import "../../styles/demo.scss";
 import { Home } from "./home";
 
 export const Actualizardatos = actualizardatos => {
+	const { store, actions } = useContext(Context);
+
+	const [provinciaId, setProvinciaId] = useState(1);
+	const handleSelect = e => {
+		setProvinciaId(parseInt(e.target.value));
+	};
+	/* useEffect(() => {
+    actions.loadProvincias();
+    actions.loadCantones();
+    actions.loadServicios();
+}, []); */
 	return (
 		<div className="col-lg-4 text-white">
 			<div className="form-provincia">
 				<label form="sel1">Provincia:</label>
-				<select className="form-control" id="sel1">
-					<option>Alajuela</option>
-					<option>Heredia</option>
-					<option>Cartago</option>
-					<option>San José</option>
-					<option>Guanacaste</option>
-					<option>Limón</option>
-					<option>Puntarenas</option>
+				<select className="form-control" id="sel1" onChange={handleSelect}>
+					{store.provincias.map(item => (
+						<option key={item.id} value={item.id}>
+							{item.nombre}
+						</option>
+					))}
 				</select>
 			</div>
 			<div className="form-Cantón">
 				<label form="usr">Cantón:</label>
-				<input type="text" className="form-control" id="usr" />
+				<select className="form-control" id="sel1">
+					{store.cantones
+						.filter(cantonesToFilter => cantonesToFilter.id_provincias === provinciaId)
+						.map((item, index) => (
+							<option key={index} value={item.id}>
+								{item.nombre}
+							</option>
+						))}
+				</select>
 			</div>
 			<div className="form-Name">
 				<label form="usr">Nombre Pymes:</label>
@@ -28,10 +46,11 @@ export const Actualizardatos = actualizardatos => {
 			<div className="form-servicios">
 				<label form="sel1">Servicios:</label>
 				<select className="form-control" id="sel1">
-					<option>Servicios</option>
-					<option>Comida</option>
-					<option>Ropa</option>
-					<option>Otros</option>
+					{store.servicios.map(item => (
+						<option key={item.id} value={item.id}>
+							{item.tipo}
+						</option>
+					))}
 				</select>
 			</div>
 			<div className="form-Teléfono">
