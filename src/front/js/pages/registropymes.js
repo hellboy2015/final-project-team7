@@ -39,12 +39,12 @@ export const Registropymes = registropymes => {
 						<p className="title">Log in</p>
 					</div>
 					<div>
-						<input type="text" placeholder="Username" />
+						<input type="text" placeholder="Correo" />
 						<label className="fa fa-user" />
 					</div>
 
 					<div>
-						<input type="password" placeholder="Password" />
+						<input type="password" placeholder="Contraseña" />
 						<label className="fa fa-key" />
 					</div>
 					<div>

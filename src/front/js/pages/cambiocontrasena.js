@@ -16,9 +16,9 @@ export const Cambiocontrasena = cambiocontrasena => {
 						<label>Cambio Contraseña</label>
 					</div>
 					<div>
-						<input type="text" placeholder="Correo" />
+						<input type="text" placeholder="Contraseña Actual" />
 						Contraseña Actual
-						<label className="fa fa-user" />
+						<label className="fa fa-key" />
 					</div>
 
 					<div>

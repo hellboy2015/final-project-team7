@@ -29,7 +29,7 @@ export const ProvinciaGenerico = props => {
 
 	return (
 		<div className="container">
-			<table className="table table-responsive table-hover table-dark">
+			<table className="table table-hover table-dark">
 				<thead>
 					<tr>
 						<th scope="col">#</th>
