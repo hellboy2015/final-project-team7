@@ -7,7 +7,7 @@ export const Registropymes = registropymes => {
 	return (
 		<div>
 			<div className="container">
-				<ul>
+				{/* <ul>
 					<li>
 						<nav className="navbar mb-3 ">
 							<Link to="/actualizardatos">
@@ -31,7 +31,7 @@ export const Registropymes = registropymes => {
 							</div>
 						</nav>
 					</li>
-				</ul>
+				</ul> */}
 			</div>
 			<div className="wrapper text-white">
 				<div className="login">

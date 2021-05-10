@@ -14,6 +14,8 @@ import { ProvinciaGenerico } from "./pages/testProvinciaGenerico";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import PymesTable from "./component/PymesTable";
+import PymesTableUI from "./component/PymesTableUI";
 
 //create your first component
 const Layout = () => {
@@ -30,7 +32,7 @@ const Layout = () => {
 						<Route exact path="/" component={Home} />
 						<Route exact path="/home" component={Home} />
 						<Route exact path="/provincia/:nombre">
-							<ProvinciaGenerico />
+							<PymesTableUI />
 						</Route>
 						<Route exact path="/registropymes" component={Registropymes} />
 						<Route exact path="/actualizardatos" component={Actualizardatos} />
