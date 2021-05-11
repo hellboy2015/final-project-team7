@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext, useEffect } from "react";
+import React, { forwardRef, useContext, useEffect, useState } from "react";
 import MaterialTable from "material-table";
 import AddBox from "@material-ui/icons/AddBox";
 import ArrowDownward from "@material-ui/icons/ArrowDownward";
@@ -53,6 +53,7 @@ const tableIcons = {
 
 function PymesTableUI() {
 	const { store, actions } = useContext(Context);
+	const [provinceData, setProvinceData] = useState([]);
 	const params = useParams();
 
 	useEffect(() => {
@@ -60,22 +61,51 @@ function PymesTableUI() {
 	}, []);
 
 	let idProvincia = store.provincias.find(x => x.nombre === ajusteNombreProvincia(params.nombre)).id;
-	console.log(store.provincia);
+	//console.log(store.provincia);
+
+	/*Heiner Guillen: Metodo para ajustar las provincias y cantones con sus valores reales (no los ids) */
+	const adjustData = data => {
+		if (data) {
+			const result = data.provincia.map((item, index) => {
+				const provincia = data.provincias.find(x => x.id === item.id_provincia).nombre;
+				const canton = store.cantones.find(x => x.id === item.id_canton).nombre;
+				const servicio = store.servicios.find(x => x.id === item.id_tiposServicio).tipo;
+				return { ...item, provincia, canton, servicio };
+			});
+			return result;
+		}
+		return data;
+	};
+
+	/** Efecto para colocar en estado los datos de la provincia depurados una vez se obtengan las provincias con los actions */
+	useEffect(
+		() => {
+			setProvinceData(adjustData(store));
+		},
+		[store.provincia]
+	);
+
 	return (
 		<div style={{ maxWidth: "100%" }}>
 			<MaterialTable
 				columns={[
 					{ title: "#", field: "id" },
-					{ title: "Provincia", field: "Provincia" },
-					{ title: "Cantón", field: "Cantón" },
-					{ title: "E-Nombre PYMES", field: "nombre" },
-					{ title: "Servicio", field: "Servicio" },
+					{ title: "Provincia", field: "provincia" },
+					{ title: "Cantón", field: "canton" },
+					{
+						title: "Nombre PYMES",
+						field: "nombre",
+						render: function nameLink(rowData) {
+							return <Link to={"/single/" + rowData.id}>{rowData.nombre}</Link>;
+						}
+					},
+					{ title: "Servicio", field: "servicio" },
 					{ title: "Teléfono", field: "telefono" },
 					{ title: "Otras Señas", field: "otrassenas" },
 					{ title: "Facebook", field: "facebook" },
 					{ title: "Instagram", field: "instagram" }
 				]}
-				data={store.provincia}
+				data={provinceData}
 				title="Directorio de la Provincia"
 				icons={tableIcons}
 				options={{
@@ -85,9 +115,20 @@ function PymesTableUI() {
 					},
 					actionsColumnIndex: -1
 				}}
+				localization={{
+					toolbar: {
+						searchTooltip: "Busc@r",
+						searchPlaceholder: "Busc@r"
+					}
+				}}
 			/>
 		</div>
 	);
 }
 
 export default PymesTableUI;
+
+/**
+ * Documentacion Material Table
+ * https://material-table.com/#/
+ */
