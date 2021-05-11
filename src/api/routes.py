@@ -1,12 +1,18 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
+import os
 from flask import Flask, request, jsonify, url_for, Blueprint
+from flask import current_app
 from api.models import db, User, Pyme, TiposUsuario, Provincias, Cantones, TiposServicio
 from api.utils import generate_sitemap, APIException
+from flask_cors import CORS
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+#from werkzeug.security import generate_password_hash, check_password_hash       ## Nos permite manejar tokens por authentication (usuarios)    
+import datetime
+
 
 api = Blueprint('api', __name__)
-
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
@@ -98,3 +104,42 @@ def servicios():
     servicios = list(map(lambda x: x.serialize(), serviciosQuery))
 
     return jsonify(servicios), 200
+
+@api.route('/login', methods=['POST'])
+def login():
+    #print("Ok")
+    username = request.json.get("username", None)
+    password = request.json.get("password", None)
+
+    user = User.query.filter_by(email=username, contrasena=password).first()
+
+    if user is None:
+        return jsonify({"msg": "Bad username or password"}), 401
+
+    access_token = create_access_token(identity=user.id)
+    return jsonify(access_token=access_token)
+
+@api.route('/register', methods=['POST'])
+def register():
+
+    email = request.json.get("email", None)
+    contrasena = request.json.get("contrasena", None)
+
+    if not email:
+        return jsonify({"msg":"Email required"}), 400
+
+    usuarioNuevo = User(email=email, contrasena=contrasena, activo=True, id_tipo=2)
+    db.session.add(usuarioNuevo)
+    db.session.commit()
+
+    return jsonify("Registro correcto"), 200
+
+    #data = {
+        #"user": user.serialize(),
+        #"token": access_token,
+        #"expires": expiracion.total_seconds()*1000,
+        #"userId": user.email
+    #}
+
+
+    
