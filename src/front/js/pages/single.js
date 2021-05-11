@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
+
 import "../../styles/registropymes.scss";
 
 export const Single = props => {
@@ -14,18 +15,18 @@ export const Single = props => {
 			<div className="row justify-content-center text-white">
 				<h1>Pyme {pyme.nombre}</h1>
 			</div>
-			<div className="row container text-white">
+			<div className="row container text-white mt-5">
 				<div className="col-md-6">
-					<img className="img-thumbnail" src="https://picsum.photos/300" />
+					<image url="{pyme.Imagen}"> </image>
 				</div>
 				<div className="col-md-6">
 					<div className=" row container ">
-						<div className=" col-6 ">
+						<div className=" col ">
 							<br />
 							Provincia: {store.provincias.find(x => x.id === pyme.id_provincia).nombre}
 						</div>
 
-						<div className="col-6 ">
+						<div className="col ">
 							<br />
 							Cantón: {store.cantones.find(x => x.id === pyme.id_canton).nombre}
 						</div>

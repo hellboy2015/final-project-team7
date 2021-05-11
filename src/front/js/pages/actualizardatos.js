@@ -70,6 +70,22 @@ export const Actualizardatos = actualizardatos => {
 					<label form="usr">Facebook:</label>
 					<input type="text" className="form-control" id="usr" />
 				</div>
+				<div>
+					<select name="select">
+						<option value="https://images.freejpg.com.ar/900/0405/clothes-jackets-shirts-fashion-clothing-shopping-retail-F100024217.jpg">
+							Ropa
+						</option>
+						<option value="https://images.freejpg.com.ar/900/0705/fork-chicken-tomatoes-pasta-food-lunch-dinner-F100025310.jpg">
+							Comida
+						</option>
+						<option value="https://www.freejpg.com.ar/image-900/dd/dd33/F100011987-mecanico_posando_en_un_taller_mecanico.jpg">
+							Servicios
+						</option>
+						<option value="https://images.freejpg.com.ar/900/0405/people-meeting-computer-business-coworkers-wireless-technology-F100024601.jpg">
+							Otros
+						</option>
+					</select>
+				</div>
 				<div className="col text-center">
 					<button type="submit" className=" spinner">
 						Ingresar PYME
