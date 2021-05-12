@@ -17,7 +17,7 @@ export const Single = props => {
 			</div>
 			<div className="row container text-white mt-5">
 				<div className="col-md-6">
-					<image url="{pyme.Imagen}"> </image>
+					<img className="img-thumbnail" src={pyme.Imagen} />
 				</div>
 				<div className="col-md-6">
 					<div className=" row container ">
