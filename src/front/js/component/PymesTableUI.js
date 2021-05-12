@@ -109,8 +109,8 @@ function PymesTableUI() {
 				title="Directorio de la Provincia"
 				icons={tableIcons}
 				options={{
-					headerStyle: {
-						backgroundColor: "#01579b",
+					headerStyle, maxBodyHeight: {
+						backgroundColor: "#060707",
 						color: "#FFF"
 					},
 					actionsColumnIndex: -1
