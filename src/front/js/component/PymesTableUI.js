@@ -115,6 +115,10 @@ function PymesTableUI() {
 							backgroundColor: "#060707",
 							color: "#FFF"
 						},
+						rowStyle: {
+							backgroundColor: "#232424",
+							color: "#FFF"
+						},
 						actionsColumnIndex: -1
 					}}
 					localization={{
