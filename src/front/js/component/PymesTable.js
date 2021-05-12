@@ -11,19 +11,18 @@ import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
 
 const StyledTableCell = withStyles(theme => ({
-	head: {
-		backgroundColor: theme.palette.common.black,
-		color: theme.palette.common.white
-	},
+	head,
 	body: {
+		backgroundColor: theme.palette.common.black,
+		color: theme.palette.common.white,
 		fontSize: 14
 	}
 }))(TableCell);
 
 const StyledTableRow = withStyles(theme => ({
 	root: {
-		"&:nth-of-type(odd)": {
-			backgroundColor: theme.palette.action.hover
+		"&:nth-of-type(0)": {
+			backgroundColor: theme.palette.TableBody.palette.hover
 		}
 	}
 }))(TableRow);
@@ -73,7 +72,7 @@ export default function PymesTable() {
 
 	return (
 		<TableContainer component={Paper}>
-			<Table className={classes.table} aria-label="customized table">
+			<Table className={classes.table} aria-label="customized table bg-dark">
 				<TableHead>
 					<TableRow>
 						{columnsName.map((col, idx) => {

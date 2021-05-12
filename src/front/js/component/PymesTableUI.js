@@ -17,6 +17,7 @@ import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
 import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
+import "../../styles/registropymes.scss";
 
 function ajusteNombreProvincia(nombreProvincia) {
 	switch (nombreProvincia) {
@@ -86,42 +87,44 @@ function PymesTableUI() {
 	);
 
 	return (
-		<div style={{ maxWidth: "100%" }}>
-			<MaterialTable
-				columns={[
-					{ title: "#", field: "id" },
-					{ title: "Provincia", field: "provincia" },
-					{ title: "Cantón", field: "canton" },
-					{
-						title: "Nombre PYMES",
-						field: "nombre",
-						render: function nameLink(rowData) {
-							return <Link to={"/single/" + rowData.id}>{rowData.nombre}</Link>;
+		<div className="wrapper text-white">
+			<div style={{ maxWidth: "100%" }}>
+				<MaterialTable
+					columns={[
+						{ title: "#", field: "id" },
+						{ title: "Provincia", field: "provincia" },
+						{ title: "Cantón", field: "canton" },
+						{
+							title: "Nombre PYMES",
+							field: "nombre",
+							render: function nameLink(rowData) {
+								return <Link to={"/single/" + rowData.id}>{rowData.nombre}</Link>;
+							}
+						},
+						{ title: "Servicio", field: "servicio" },
+						{ title: "Teléfono", field: "telefono" },
+						{ title: "Otras Señas", field: "otrassenas" },
+						{ title: "Facebook", field: "facebook" },
+						{ title: "Instagram", field: "instagram" }
+					]}
+					data={provinceData}
+					title="Directorio de la Provincia"
+					icons={tableIcons}
+					options={{
+						headerStyle: {
+							backgroundColor: "#060707",
+							color: "#FFF"
+						},
+						actionsColumnIndex: -1
+					}}
+					localization={{
+						toolbar: {
+							searchTooltip: "Busc@r",
+							searchPlaceholder: "Busc@r"
 						}
-					},
-					{ title: "Servicio", field: "servicio" },
-					{ title: "Teléfono", field: "telefono" },
-					{ title: "Otras Señas", field: "otrassenas" },
-					{ title: "Facebook", field: "facebook" },
-					{ title: "Instagram", field: "instagram" }
-				]}
-				data={provinceData}
-				title="Directorio de la Provincia"
-				icons={tableIcons}
-				options={{
-					headerStyle, maxBodyHeight: {
-						backgroundColor: "#060707",
-						color: "#FFF"
-					},
-					actionsColumnIndex: -1
-				}}
-				localization={{
-					toolbar: {
-						searchTooltip: "Busc@r",
-						searchPlaceholder: "Busc@r"
-					}
-				}}
-			/>
+					}}
+				/>
+			</div>
 		</div>
 	);
 }
