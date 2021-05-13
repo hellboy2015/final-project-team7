@@ -11,11 +11,8 @@ import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
 
 const StyledTableCell = withStyles(theme => ({
-	head,
-	body: {
-		backgroundColor: theme.palette.common.black,
-		color: theme.palette.common.white,
-		fontSize: 14
+	header: {
+		fontSize: 15
 	}
 }))(TableCell);
 

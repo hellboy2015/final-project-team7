@@ -88,7 +88,7 @@ function PymesTableUI() {
 
 	return (
 		<div className="wrapper text-white">
-			<div style={{ maxWidth: "100%" }}>
+			<div style={{ maxWidth: "98%" }}>
 				<MaterialTable
 					columns={[
 						{ title: "#", field: "id" },
@@ -108,21 +108,30 @@ function PymesTableUI() {
 						{ title: "Instagram", field: "instagram" }
 					]}
 					data={provinceData}
-					title="Directorio de la Provincia"
+					title="Pymes"
 					icons={tableIcons}
 					options={{
 						headerStyle: {
 							backgroundColor: "#060707",
-							color: "#FFF"
+							color: "#FFF",
+							margin: "20px"
 						},
 						rowStyle: {
 							backgroundColor: "#232424",
-							color: "#FFF"
+							color: "#FFF",
+							fontSize: 12
 						},
+						filterCellStyle: {
+							backgroundColor: "#232424",
+							color: "#FFF",
+							fontSize: 12
+						},
+
 						actionsColumnIndex: -1
 					}}
 					localization={{
 						toolbar: {
+							paginationType: "normal",
 							searchTooltip: "Busc@r",
 							searchPlaceholder: "Busc@r"
 						}
