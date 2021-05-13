@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function ProvinceCard(props) {
 	return (
 		<div
-			className="card w-custom province-card img-fluid rounded-circle cover-province"
+			className="card w-custom province-card img-fluid rounded cover-province"
 			style={{
 				background: `url(${props.imagen})`,
 				backgroundPosition: "center",

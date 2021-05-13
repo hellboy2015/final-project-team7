@@ -15,14 +15,22 @@ import sanjoseImg from "../../img/SanJose.jpg";
 
 export const Home = () => {
 	return (
-		<div className="text-center">
-			<div className="">
+		<div className="">
+			<div className="w-100">
 				<img src={heroCustom} className="img-fluid" />
 			</div>
 			{/* <div className="alert alert-info">{store.message || ""}</div> */}
-			<span>Busc@PYMES</span>
+			<div className="text-center">
+				<h4 className="text-light mt-2">Busc@PYMES</h4>
+				<p className="text-light m-5 h3">
+					Busc@mos brindar facilidades a los comercios regionales para que puedan anunciar y potenciar las
+					ventas de sus productos en su localidad y todo el país. Para accesar el directorio de comercios : dé
+					click en alguno de los nombres de las provincias , busque el servicio, cantón u otra descripción de
+					su preferencia y luego seleccione la empresa que desea contactar.
+				</p>
+			</div>
 			<div className="container-fluid">
-				<div className="d-flex justify-content-between flex-wrap">
+				<div className="d-flex justify-content-center flex-wrap">
 					<ProvinceCard route="alajuela" provinceName="Alajuela" imagen={alajuelaImg} />
 					<ProvinceCard route="cartago" provinceName="Cartago" imagen={cartagoImg} />
 					<ProvinceCard route="guanacaste" provinceName="Guanacaste" imagen={guanacasteImg} />
