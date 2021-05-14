@@ -28,7 +28,7 @@ export const Actualizardatos = () => {
 
 		const body = {
 			provincia: provinciaId,
-			canton: provinciaId,
+			canton: canton,
 			nombrePyme: nombrePyme,
 			tipoServicio: tipoServicio,
 			telefono: telefono,
@@ -58,16 +58,36 @@ export const Actualizardatos = () => {
 			.catch(error => console.log("error", error));
 	};
 
+	const handleProviniciaCanton = e => {
+		setCanton(0);
+		setProvinciaId(parseInt(e.target.value));
+	};
+
+	const handleTest = e => {
+		e.preventDefault();
+
+		const body = {
+			provincia: provinciaId,
+			canton: canton,
+			nombrePyme: nombrePyme,
+			tipoServicio: tipoServicio,
+			telefono: telefono,
+			otrasSenas: otrasSenas,
+			instagram: instagram,
+			facebook: facebook
+		};
+
+		console.log(JSON.stringify(body));
+	};
+
 	return (
 		<div className="container">
 			<div className="wrapper text-white">
-				<form onSubmit={handleActualizarDatos} style={{ width: "500px" }}>
+				<form onSubmit={handleTest} style={{ width: "500px" }}>
 					<div className="form-provincia">
 						<label form="sel1">Provincia:</label>
-						<select
-							className="form-control"
-							id="sel1"
-							onChange={e => setProvinciaId(parseInt(e.target.value))}>
+						<select className="form-control" id="provincia" onChange={e => handleProviniciaCanton(e)}>
+							<option value>-- Seleccione una opci&oacute;n --</option>
 							{store.provincias.map(item => (
 								<option key={item.id} value={item.id}>
 									{item.nombre}
@@ -77,7 +97,14 @@ export const Actualizardatos = () => {
 					</div>
 					<div className="form-Cantón">
 						<label form="usr">Cantón:</label>
-						<select className="form-control" id="sel1" onChange={e => setCanton(parseInt(e.target.value))}>
+						<select
+							className="form-control"
+							id="canton"
+							onChange={e => setCanton(parseInt(e.target.value))}
+							value={canton}>
+							<option id="defaultCanton" value="0">
+								-- Seleccione una opci&oacute;n --
+							</option>
 							{store.cantones
 								.filter(cantonesToFilter => cantonesToFilter.id_provincias === provinciaId)
 								.map((item, index) => (
@@ -102,6 +129,9 @@ export const Actualizardatos = () => {
 							className="form-control"
 							id="servicios"
 							onChange={e => setTipoServicio(parseInt(e.target.value))}>
+							<option hidden disabled selected value>
+								-- Seleccione una opci&oacute;n --
+							</option>
 							{store.servicios.map(item => (
 								<option key={item.id} value={item.id}>
 									{item.tipo}
