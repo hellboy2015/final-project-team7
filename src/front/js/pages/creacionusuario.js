@@ -35,9 +35,6 @@ export const Creacionusuario = () => {
 			.then(response => response.json())
 			.then(result => {
 				console.log(result);
-				setStore({
-					favorites: result
-				});
 			})
 			.catch(error => console.log("error", error));
 	};

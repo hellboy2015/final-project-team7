@@ -51,9 +51,6 @@ export const Actualizardatos = () => {
 			.then(response => response.json())
 			.then(result => {
 				console.log(result);
-				setStore({
-					favorites: result
-				});
 			})
 			.catch(error => console.log("error", error));
 	};
@@ -63,7 +60,7 @@ export const Actualizardatos = () => {
 		setProvinciaId(parseInt(e.target.value));
 	};
 
-	const handleTest = e => {
+	/* const handleTest = e => {
 		e.preventDefault();
 
 		const body = {
@@ -78,12 +75,12 @@ export const Actualizardatos = () => {
 		};
 
 		console.log(JSON.stringify(body));
-	};
+	}; */
 
 	return (
 		<div className="container">
 			<div className="wrapper text-white">
-				<form onSubmit={handleTest} style={{ width: "500px" }}>
+				<form onSubmit={handleActualizarDatos} style={{ width: "500px" }}>
 					<div className="form-provincia">
 						<label form="sel1">Provincia:</label>
 						<select className="form-control" id="provincia" onChange={e => handleProviniciaCanton(e)}>
