@@ -8,8 +8,28 @@ from api.models import db, User, Pyme, TiposUsuario, Provincias, Cantones, Tipos
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
-#from werkzeug.security import generate_password_hash, check_password_hash       ## Nos permite manejar tokens por authentication (usuarios)    
+from werkzeug.security import generate_password_hash, check_password_hash       ## Nos permite manejar tokens por authentication (usuarios)    
 import datetime
+
+#for creating password from backend
+from urllib.request import urlopen
+import json
+
+#for sending email from flask mail
+from flask_mail import Mail, Message
+app = Flask(__name__)
+mail= Mail(app)
+
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'dirpro4g@gmail.com'
+app.config['MAIL_PASSWORD'] = 'a1b2c3D$'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail = Mail(app)
+#mail.init_app(api)
+#end of flask email setup
+
 
 
 api = Blueprint('api', __name__)
@@ -107,39 +127,192 @@ def servicios():
 
 @api.route('/login', methods=['POST'])
 def login():
-    #print("Ok")
-    username = request.json.get("username", None)
-    password = request.json.get("password", None)
+    usuario = request.json.get("usuario", None)
+    contrasena = request.json.get("contrasena", None)
 
-    user = User.query.filter_by(email=username, contrasena=password).first()
+    user = User.query.filter_by(email=usuario).first()
 
-    if user is None:
+    if not check_password_hash(user.contrasena,contrasena) or user is None:
         return jsonify({"msg": "Bad username or password"}), 401
 
     access_token = create_access_token(identity=user.id)
+
+    data = {
+            "user": user.email,
+            "token": access_token,
+            #"expires": expiracion.total_seconds()*1000,
+            "userId": user.id,
+            "idTipo":user.id_tipo
+            #"username": user.username
+        }
+
+
+    return jsonify(data), 200
+
     return jsonify(access_token=access_token)
 
-@api.route('/register', methods=['POST'])
-def register():
+@api.route('/UsuarioNuevo', methods=['POST'])
+@jwt_required()
+def UsuarioNuevo():
 
-    email = request.json.get("email", None)
-    contrasena = request.json.get("contrasena", None)
+    current_user_id = get_jwt_identity()
+    user = User.query.filter_by(id=current_user_id).first()
 
-    if not email:
-        return jsonify({"msg":"Email required"}), 400
+    with urlopen('https://makemeapassword.ligos.net/api/v1/alphanumeric/json?c=1&l=12') as r:
+        text = r.read().decode('UTF-8')
+        contrasena = json.loads(text)["pws"][0]
 
-    usuarioNuevo = User(email=email, contrasena=contrasena, activo=True, id_tipo=2)
-    db.session.add(usuarioNuevo)
+        #return contrasena["pws"][0]
+
+        #return "Sent"
+
+    if user is not None:
+
+        email = request.json.get("email", None)
+        #contrasena = request.json.get("contrasena", None)
+        #token = request.json.get("token", None)
+
+        if not email:
+            return jsonify({"msg":"Email required"}), 400
+
+        hashed_password = generate_password_hash(contrasena)
+
+        user = User()
+        user.email = email
+        user.contrasena = hashed_password
+        user.activo = True
+        user.id_tipo = 2
+
+        #usuarioNuevo = User(email=email, contrasena=contrasena, activo=True, id_tipo=2)
+        db.session.add(user)
+        db.session.commit()
+
+        msg = Message('Busc@PYME aviso', sender = 'dirpro4g@gmail.com', recipients = ['dirpro4g@gmail.com',email])
+        msg.body = "Hola. Esta es la contrasena para su nueva cuenta con Busc@PYME: " + contrasena#["pws"][0]
+        mail.send(msg)
+
+        return jsonify("Registro correcto"), 200
+    else:
+        return jsonify("Token invalid or expired"), 401
+
+@api.route('/actualizapyme', methods=['POST'])
+@jwt_required()
+def ActualizaPyme():
+
+    current_user_id = get_jwt_identity()
+    user = User.query.filter_by(id=current_user_id).first()
+    user_has_pyme = Pyme.query.filter_by(id_user=current_user_id).first()
+    
+    if user_has_pyme:
+        return jsonify({"msg": "User has an existing PYME registered"}), 401
+
+    if user is not None:
+
+        provincia = request.json.get("provincia", None)
+        canton = request.json.get("canton", None)
+        nombrePyme = request.json.get("nombrePyme", None)
+        tipoServicio = request.json.get("tipoServicio", None)
+        telefono = request.json.get("telefono", None)
+        otrasSenas = request.json.get("otrasSenas", None)
+        instagram = request.json.get("instagram", None)
+        facebook = request.json.get("facebook", None)
+
+        pyme = Pyme()
+        pyme.nombre = nombrePyme
+        pyme.id_provincia = provincia
+        pyme.id_canton = canton
+        pyme.id_tiposServicio = tipoServicio
+        pyme.id_user = current_user_id
+        pyme.otrassenas = otrasSenas
+        pyme.telefono = telefono
+        pyme.facebook = facebook
+        pyme.instagram = instagram
+        pyme.Imagen = "Test String"
+
+        db.session.add(pyme)
+        db.session.commit()
+
+        return jsonify("Registro correcto"), 200
+    else:
+        return jsonify({"msg": "Token invalid or expired"}), 401
+    
+@api.route('/CambioContrasena', methods=['POST'])
+@jwt_required()
+def CambioContrasena():
+
+    current_user_id = get_jwt_identity()
+    user = User.query.filter_by(id=current_user_id).first()
+
+    contrasenaAnterior = request.json.get("contrasenaanterior", None)
+    contrasenaNueva = request.json.get("contrasenanueva", None)
+    contrasenaNueva2 = request.json.get("confirmacontrasenanueva", None)
+
+    if not contrasenaNueva == contrasenaNueva2:
+        return jsonify({"msg": "Las contrasena nueva y la confirmacion no concuerdan"}), 401
+
+    #user = User.query.filter_by(email=usuario).first()
+
+    if not check_password_hash(user.contrasena,contrasenaAnterior):
+        return jsonify({"msg": "La contrasena actual no concuerda"}), 401
+    
+    hashed_password = generate_password_hash(contrasenaNueva)
+    contrasenaNueva = hashed_password
+    user.contrasena = contrasenaNueva
     db.session.commit()
 
-    return jsonify("Registro correcto"), 200
+    msg = Message('Busc@PYME aviso', sender = 'dirpro4g@gmail.com', recipients = ['juanca86@gmail.com'])
+    msg.body = "Su contrasena ha sido cambiada"
+    mail.send(msg)
 
-    #data = {
-        #"user": user.serialize(),
-        #"token": access_token,
-        #"expires": expiracion.total_seconds()*1000,
-        #"userId": user.email
-    #}
+    return jsonify({"msg": "Comtrasena cambiada correctamente"}), 200
 
 
-    
+#ESTE USUARIO ES PARA TEST Y PERMITE CREAR USUARIOS ADMIN
+#CREAR USUARIOS ADMIN DA UN PROBLEMA YA QUE EL PASS NO QUEDA HASHEADO
+#ES ALGO QUE DEBEMOS ANALIZAR CON RESPECTO A LA CREACION DE USUARIOS ADMIN
+
+@api.route('/AdminNuevo', methods=['POST'])
+#@jwt_required()
+def AdminNuevo():
+
+    #current_user_id = get_jwt_identity()
+    user = User.query.filter_by(id=1).first()
+
+    with urlopen('https://makemeapassword.ligos.net/api/v1/alphanumeric/json?c=1&l=12') as r:
+        text = r.read().decode('UTF-8')
+        contrasena = json.loads(text)["pws"][0]
+
+        #return contrasena["pws"][0]
+
+        msg = Message('Busc@PYME aviso', sender = 'dirpro4g@gmail.com', recipients = ['juanca86@gmail.com'])
+        msg.body = "Hola. Esta es la contrasena para su nueva cuenta con Busc@PYME: " + contrasena#["pws"][0]
+        mail.send(msg)
+        #return "Sent"
+
+    if user is not None:
+
+        email = request.json.get("email", None)
+        #contrasena = request.json.get("contrasena", None)
+        #token = request.json.get("token", None)
+
+        if not email:
+            return jsonify({"msg":"Email required"}), 400
+
+        hashed_password = generate_password_hash(contrasena)
+        contrasena = hashed_password
+
+        user = User()
+        user.email = email
+        user.contrasena = contrasena
+        user.activo = True
+        user.id_tipo = 1
+
+        #usuarioNuevo = User(email=email, contrasena=contrasena, activo=True, id_tipo=2)
+        db.session.add(user)
+        db.session.commit()
+
+        return jsonify("Registro correcto"), 200
+    else:
+        return jsonify("Token invalid or expired"), 401
+
+#FIN DE PRUEBA
