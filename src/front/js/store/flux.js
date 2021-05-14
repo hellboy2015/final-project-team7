@@ -10,7 +10,8 @@ const getState = ({ getActions, setStore }) => {
 			cantones: [],
 			provincias: [],
 			servicios: [],
-			provincia: []
+			provincia: [],
+			imagenes: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction

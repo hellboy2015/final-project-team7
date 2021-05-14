@@ -146,7 +146,9 @@ export const Actualizardatos = () => {
 						/>
 					</div>
 					<div className="col text-center">
-						<button type="submit" className=" spinner">
+						<button
+							type="submit"
+							className="spinner MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-1 MuiButton-containedPrimary MuiButton-containedSizeLarge MuiButton-sizeLarge">
 							Ingresar PYME
 						</button>
 					</div>

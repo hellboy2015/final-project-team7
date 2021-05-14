@@ -22,7 +22,7 @@ export const Registropymes = () => {
 		};
 
 		// fetch de LOGIN
-		fetch("https://busca-pyme.herokuapp.com/api/login/", {
+		fetch("https://busca-pyme.herokuapp.com/api/login", {
 			method: "POST",
 			body: JSON.stringify(body),
 			headers: {
