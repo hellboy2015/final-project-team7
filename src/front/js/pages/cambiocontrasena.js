@@ -53,12 +53,13 @@ export const Cambiocontrasena = () => {
 	};
 
 	return (
-		<div>
+		<div className="text-center">
 			<div className="wrapper text-white">
 				<form onSubmit={handleCambioContrasena}>
 					<div className="Cambio Contraseña">
+						<p className="title">Cambio Contraseña</p>
 						<div className="form-login">
-							<label>Cambio Contraseña</label>
+							<label />
 						</div>
 						<div className="mb-2">
 							<input
@@ -66,7 +67,7 @@ export const Cambiocontrasena = () => {
 								placeholder="Contraseña Actual"
 								onChange={e => setOldPassword(e.target.value)}
 							/>
-							Contraseña Actual
+
 							<label className="fa fa-key" />
 						</div>
 
@@ -76,7 +77,7 @@ export const Cambiocontrasena = () => {
 								placeholder="Contraseña"
 								onChange={e => setNewPAssword(e.target.value)}
 							/>
-							Nueva Contraseña
+
 							<label className="fa fa-key" />
 						</div>
 						<div className="mb-2">
@@ -85,14 +86,14 @@ export const Cambiocontrasena = () => {
 								placeholder="Confirmar Contraseña"
 								onChange={e => setConfirmPassword(e.target.value)}
 							/>
-							Confirmar Contraseña
+
 							<label className="fa fa-key" />
 						</div>
 						<div>
 							<button
 								type="submit"
 								className="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-1 MuiButton-containedPrimary MuiButton-containedSizeLarge MuiButton-sizeLarge m-0">
-								<label className="spinner" />
+								<label className="spinner " />
 								<span className="state">Cambio Contraseña</span>
 							</button>
 						</div>

@@ -49,22 +49,23 @@ export const Registropymes = () => {
 	return (
 		<div>
 			<div className="wrapper text-white">
-				<form onSubmit={handleSubmit} style={{ width: "500px" }}>
+				<form onSubmit={handleSubmit}>
 					<div className="login">
 						<div className="form-login">
 							<p className="title">Log in</p>
 						</div>
 						<div>
-							<input onChange={e => setUsername(e.target.value)} type="text" placeholder="Correo" />
-							<label className="fa fa-user" />
+							<input type="text" placeholder="correo" onChange={e => setEmail(e.target.value)} />
+							<label className="fa fa-user ml-2" />
 						</div>
 
 						<div>
 							<input
-								onChange={e => setPassword(e.target.value)}
 								type="password"
 								placeholder="Contraseña"
+								onChange={e => setOldPassword(e.target.value)}
 							/>
+
 							<label className="fa fa-key" />
 						</div>
 						<div>

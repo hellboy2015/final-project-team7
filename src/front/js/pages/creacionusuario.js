@@ -40,14 +40,14 @@ export const Creacionusuario = () => {
 	};
 
 	return (
-		<div className="container">
-			<div className="wrapper text-white">
+		<div className="container wrapper">
+			<div className=" mb-3 text-white">
 				<form onSubmit={handleCrearUsuario}>
 					<div className="creacionusuario">
 						<div className="form-correo">
 							<p className="title">Generar nuevo usuario</p>
 						</div>
-						<div className="mb-3">
+						<div className>
 							<input type="text" placeholder="correo" onChange={e => setEmail(e.target.value)} />
 							<label className="fa fa-user ml-2" />
 						</div>

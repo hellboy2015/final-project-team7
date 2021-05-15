@@ -78,7 +78,7 @@ export const Actualizardatos = () => {
 	}; */
 
 	return (
-		<div className="container">
+		<div className="container ">
 			<div className="wrapper text-white">
 				<form onSubmit={handleActualizarDatos} style={{ width: "500px" }}>
 					<div className="form-provincia">
