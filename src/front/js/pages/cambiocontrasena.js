@@ -44,10 +44,10 @@ export const Cambiocontrasena = () => {
 			})
 		};
 
-		fetch("https://busca-pyme.herokuapp.com/api/cambiocontrasena", requestOptions)
+		fetch("https://busca-pyme.herokuapp.com/api/CambioContrasena", requestOptions)
 			.then(response => response.json())
 			.then(result => {
-				console.log(result);
+				console.log(result.msg);
 			})
 			.catch(error => console.log("error", error));
 	};
