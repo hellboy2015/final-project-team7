@@ -11,7 +11,7 @@ export const Single = props => {
 	const pyme = store.provincia.find(x => x.id === parseInt(params.theid));
 
 	return (
-		<div className="container wrapper">
+		<div className="wrapper">
 			<div className="row justify-content-center text-white">
 				<h1>Pyme {pyme.nombre}</h1>
 			</div>

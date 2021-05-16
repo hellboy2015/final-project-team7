@@ -16,7 +16,7 @@ export default function ProvinceCard(props) {
 
 			<div className="">
 				<Link className="card-title-custom" to={"/provincia/" + props.route}>
-					{props.provinceName}{" "}
+					{props.provinceName}
 				</Link>
 			</div>
 		</div>
