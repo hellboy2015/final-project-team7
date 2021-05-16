@@ -53,52 +53,54 @@ export const Cambiocontrasena = () => {
 	};
 
 	return (
-		<div className="text-center">
-			<div className="wrapper text-white">
-				<form onSubmit={handleCambioContrasena}>
-					<div className="Cambio Contraseña">
-						<p className="title">Cambio Contraseña</p>
-						<div className="form-login">
-							<label />
-						</div>
-						<div className="mb-2">
-							<input
-								type="password"
-								placeholder="Contraseña Actual"
-								onChange={e => setOldPassword(e.target.value)}
-							/>
+		<div className="wrapper text-white">
+			<div className="text-center login">
+				<div className=" text-white">
+					<form onSubmit={handleCambioContrasena}>
+						<div className="Cambio Contraseña">
+							<p className="title">Cambio Contraseña</p>
+							<div className="form-login">
+								<label />
+							</div>
+							<div className="mb-2">
+								<input
+									type="password"
+									placeholder="Contraseña Actual"
+									onChange={e => setOldPassword(e.target.value)}
+								/>
 
-							<label className="fa fa-key" />
-						</div>
+								<label className="fa fa-key" />
+							</div>
 
-						<div className="mb-2">
-							<input
-								type="password"
-								placeholder="Contraseña"
-								onChange={e => setNewPAssword(e.target.value)}
-							/>
+							<div className="mb-2">
+								<input
+									type="password"
+									placeholder="Contraseña"
+									onChange={e => setNewPAssword(e.target.value)}
+								/>
 
-							<label className="fa fa-key" />
-						</div>
-						<div className="mb-2">
-							<input
-								type="password"
-								placeholder="Confirmar Contraseña"
-								onChange={e => setConfirmPassword(e.target.value)}
-							/>
+								<label className="fa fa-key" />
+							</div>
+							<div className="mb-2">
+								<input
+									type="password"
+									placeholder="Confirmar Contraseña"
+									onChange={e => setConfirmPassword(e.target.value)}
+								/>
 
-							<label className="fa fa-key" />
+								<label className="fa fa-key" />
+							</div>
+							<div>
+								<button
+									type="submit"
+									className="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-1 MuiButton-containedPrimary MuiButton-containedSizeLarge MuiButton-sizeLarge m-0">
+									<label className="spinner " />
+									<span className="state">Cambio Contraseña</span>
+								</button>
+							</div>
 						</div>
-						<div>
-							<button
-								type="submit"
-								className="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-1 MuiButton-containedPrimary MuiButton-containedSizeLarge MuiButton-sizeLarge m-0">
-								<label className="spinner " />
-								<span className="state">Cambio Contraseña</span>
-							</button>
-						</div>
-					</div>
-				</form>
+					</form>
+				</div>
 			</div>
 		</div>
 	);

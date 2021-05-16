@@ -40,8 +40,8 @@ export const Creacionusuario = () => {
 	};
 
 	return (
-		<div className="container wrapper">
-			<div className=" mb-3 text-white">
+		<div className=" wrapper">
+			<div className=" mb-3 text-white login">
 				<form onSubmit={handleCrearUsuario}>
 					<div className="creacionusuario">
 						<div className="form-correo">
@@ -53,9 +53,7 @@ export const Creacionusuario = () => {
 						</div>
 
 						<div>
-							<button
-								type="submit"
-								className="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-1 MuiButton-containedPrimary MuiButton-containedSizeLarge MuiButton-sizeLarge">
+							<button type="submit">
 								<label className="spinner" />
 								<span className="state">Crear Usuario</span>
 							</button>

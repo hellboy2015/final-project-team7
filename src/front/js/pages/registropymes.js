@@ -49,7 +49,7 @@ export const Registropymes = () => {
 	return (
 		<div>
 			<div className="wrapper text-white">
-				<form onSubmit={handleSubmit} className="registroForm">
+				<form onSubmit={handleSubmit}>
 					<div className="login">
 						<div className="form-login">
 							<p className="title">Log in</p>
