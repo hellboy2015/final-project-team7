@@ -24,9 +24,9 @@ export const Home = () => {
 				<h4 className="text-light mt-2">Busc@PYMES</h4>
 				<p className="text-light m-5 h3">
 					Busc@mos brindar facilidades a los comercios regionales para que puedan anunciar y potenciar las
-					ventas de sus productos en su localidad y todo el país. Para accesar el directorio de comercios : dé
-					click en alguno de los nombres de las provincias , busque el servicio, cantón u otra descripción de
-					su preferencia y luego seleccione la empresa que desea contactar.
+					ventas de sus productos en todo el país. Para accesar el directorio de comercios : selecciona una
+					provincia, luego, busc@ el servicio, cantón u otro valor que considere apropiado y finalmente,
+					seleccione la empresa que desea contactar.
 				</p>
 			</div>
 			<div className="container-fluid">
