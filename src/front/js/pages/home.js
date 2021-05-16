@@ -31,13 +31,27 @@ export const Home = () => {
 			</div>
 			<div className="container-fluid">
 				<div className="d-flex justify-content-center flex-wrap">
-					<ProvinceCard route="alajuela" provinceName="Alajuela" imagen={alajuelaImg} />
-					<ProvinceCard route="cartago" provinceName="Cartago" imagen={cartagoImg} />
-					<ProvinceCard route="guanacaste" provinceName="Guanacaste" imagen={guanacasteImg} />
-					<ProvinceCard route="heredia" provinceName="Heredia" imagen={herediaImg} />
-					<ProvinceCard route="limon" provinceName="Limón" imagen={limonImg} />
-					<ProvinceCard route="puntarenas" provinceName="Puntarenas" imagen={puntarenasImg} />
-					<ProvinceCard route="sanjose" provinceName="San José" imagen={sanjoseImg} />
+					<Link to="/provincia/alajuela">
+						<ProvinceCard route="alajuela" provinceName="Alajuela" imagen={alajuelaImg} />
+					</Link>
+					<Link to="/provincia/cartago">
+						<ProvinceCard route="cartago" provinceName="Cartago" imagen={cartagoImg} />
+					</Link>
+					<Link to="/provincia/guanacaste">
+						<ProvinceCard route="guanacaste" provinceName="Guanacaste" imagen={guanacasteImg} />
+					</Link>
+					<Link to="/provincia/heredia">
+						<ProvinceCard route="heredia" provinceName="Heredia" imagen={herediaImg} />
+					</Link>
+					<Link to="/provincia/limon">
+						<ProvinceCard route="limon" provinceName="Limón" imagen={limonImg} />
+					</Link>
+					<Link to="/provincia/puntarenas">
+						<ProvinceCard route="puntarenas" provinceName="Puntarenas" imagen={puntarenasImg} />
+					</Link>
+					<Link to="/provincia/sanjose">
+						<ProvinceCard route="sanjose" provinceName="San José" imagen={sanjoseImg} />
+					</Link>
 				</div>
 			</div>
 		</div>
