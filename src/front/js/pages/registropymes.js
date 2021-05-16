@@ -49,13 +49,13 @@ export const Registropymes = () => {
 	return (
 		<div>
 			<div className="wrapper text-white">
-				<form onSubmit={handleSubmit}>
+				<form onSubmit={handleSubmit} className="registroForm">
 					<div className="login">
 						<div className="form-login">
 							<p className="title">Log in</p>
 						</div>
 						<div>
-							<input type="text" placeholder="correo" onChange={e => setEmail(e.target.value)} />
+							<input type="text" placeholder="Correo" onChange={e => setUsername(e.target.value)} />
 							<label className="fa fa-user ml-2" />
 						</div>
 
@@ -63,7 +63,7 @@ export const Registropymes = () => {
 							<input
 								type="password"
 								placeholder="Contraseña"
-								onChange={e => setOldPassword(e.target.value)}
+								onChange={e => setPassword(e.target.value)}
 							/>
 
 							<label className="fa fa-key" />

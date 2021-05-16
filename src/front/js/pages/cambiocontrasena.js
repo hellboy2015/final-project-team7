@@ -44,7 +44,7 @@ export const Cambiocontrasena = () => {
 			})
 		};
 
-		fetch("https://3001-aquamarine-tiglon-w8fubq70.ws-us04.gitpod.io/api/cambiocontrasena", requestOptions)
+		fetch("https://busca-pyme.herokuapp.com/api/cambiocontrasena", requestOptions)
 			.then(response => response.json())
 			.then(result => {
 				console.log(result);
