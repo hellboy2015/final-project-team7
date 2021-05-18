@@ -20,7 +20,7 @@ export const Home = () => {
 				<img src={heroCustom} className="img-fluid" />
 			</div>
 			{/* <div className="alert alert-info">{store.message || ""}</div> */}
-			<div className="wrapper">
+			<div className="wrapper col">
 				<div className="text-center">
 					<h4 className="text-light mt-2">Busc@PYMES</h4>
 					<p className="text-light m-5 h3">
