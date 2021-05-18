@@ -82,9 +82,9 @@ export const Actualizardatos = () => {
 			<div className="text-white login">
 				<form onSubmit={handleActualizarDatos}>
 					<div>
-						<p className="title">Actualiza tus datos</p>
+						<p className="title pb-0">Actualiza tus datos</p>
 					</div>
-					<div>
+					<div className="form-login mb-2">
 						<select className="form-login" id="provincia" onChange={e => handleProviniciaCanton(e)}>
 							<option value>-- Seleccione una Provincia: --</option>
 							{store.provincias.map(item => (
@@ -94,7 +94,7 @@ export const Actualizardatos = () => {
 							))}
 						</select>
 					</div>
-					<div>
+					<div className="form-login mb-2">
 						<select
 							className="form-login"
 							id="canton"
@@ -112,7 +112,7 @@ export const Actualizardatos = () => {
 								))}
 						</select>
 					</div>
-					<div className="form-login">
+					<div className="form-login mb-2">
 						<select
 							className="form-login"
 							id="servicios"

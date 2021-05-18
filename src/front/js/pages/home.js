@@ -17,10 +17,10 @@ export const Home = () => {
 	return (
 		<div className="">
 			<div className="w-100">
-				<img src={heroCustom} className="img-fluid" />
+				<img src={heroCustom} className="img-fluid-home" />
 			</div>
 			{/* <div className="alert alert-info">{store.message || ""}</div> */}
-			<div className="wrapper col">
+			<div className="pymeTable col">
 				<div className="text-center">
 					<h4 className="text-light mt-2">Busc@PYMES</h4>
 					<p className="text-light m-5 h3">

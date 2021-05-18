@@ -87,7 +87,7 @@ function PymesTableUI() {
 	);
 
 	return (
-		<div className="wrapper text-white">
+		<div className="pymeTable text-white">
 			<div style={{ maxWidth: "98%" }}>
 				<MaterialTable
 					columns={[

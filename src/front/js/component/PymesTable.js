@@ -106,8 +106,16 @@ export default function PymesTable() {
 							</StyledTableCell>
 							<StyledTableCell align="left">{item.telefono}</StyledTableCell>
 							<StyledTableCell align="left">{item.otrassenas}</StyledTableCell>
-							<StyledTableCell align="left">{item.facebook}</StyledTableCell>
-							<StyledTableCell align="left">{item.instagram}</StyledTableCell>
+							<StyledTableCell align="left">
+								<Link to={"https://www.facebook.com"}>
+									<span>{item.facebook}</span>
+								</Link>
+							</StyledTableCell>
+							<StyledTableCell align="left">
+								<Link to={"https://www.instagram.com"}>
+									<span>{item.instagram}</span>
+								</Link>
+							</StyledTableCell>
 						</StyledTableRow>
 					))}
 				</TableBody>

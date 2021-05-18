@@ -2,7 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -34,25 +34,24 @@ const useStyles = makeStyles(theme => ({
 
 export default function NavButtons() {
 	const classes = useStyles();
+	const routeName = location.pathname.split("/")[1];
 
 	return (
 		<div className={classes.root}>
 			<ButtonGroup size="large" color="primary" aria-label="large outlined primary button group">
 				<Button className={classes.button}>
-					<Link className={classes.links} to="/actualizardatos">
-						Actualizar Datos
+					<Link className={classes.links} to="/registropymes">
+						Ingreso al Sistema
 					</Link>
 				</Button>
-				<Button className={classes.button}>
-					<Link className={classes.links} to="/cambiocontrasena">
-						Cambio Contraseña
-					</Link>
-				</Button>
-				<Button className={classes.button}>
-					<Link className={classes.links} to="/creacionusuario">
-						Creación Usuario
-					</Link>
-				</Button>
+
+				{routeName === "actualizardatos" && (
+					<Button className={classes.button}>
+						<Link className={classes.links} to="/cambiocontrasena">
+							Cambio Contraseña
+						</Link>
+					</Button>
+				)}
 			</ButtonGroup>
 		</div>
 	);

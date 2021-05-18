@@ -37,7 +37,7 @@ export default function LoginButton() {
 				className={classes.button}
 				startIcon={<AccountCircleIcon />}>
 				<Link className={classes.links} to="/registropymes">
-					Acceso PYMES
+					Ingreso al Sistema
 				</Link>
 			</Button>
 		</div>

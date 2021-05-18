@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 export const Registropymes = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-	const [loginRoute, setLoginRoute] = useState("");
+	const [loginRoute, setLoginRoute] = useState("/");
 	const [auth, setAuth] = useState(false);
 	const { store, actions } = useContext(Context);
 	let myStorage = window.sessionStorage;
@@ -36,7 +36,8 @@ export const Registropymes = () => {
 				sessionStorage.setItem("my_token", result.token);
 				if (result.idTipo === 2) {
 					setLoginRoute("actualizardatos");
-				} else {
+				}
+				if (result.idTipo === 1) {
 					setLoginRoute("creacionusuario");
 				}
 				console.log("myStorage", myStorage);
@@ -47,33 +48,27 @@ export const Registropymes = () => {
 	};
 
 	return (
-		<div>
-			<div className="wrapper text-white">
+		<div className="wrapper">
+			<div className="text-white login">
 				<form onSubmit={handleSubmit}>
-					<div className="login">
-						<div className="form-login">
-							<p className="title">Log in</p>
-						</div>
-						<div>
-							<input type="text" placeholder="Correo" onChange={e => setUsername(e.target.value)} />
-							<label className="fa fa-user ml-2" />
-						</div>
+					<div className="form-login">
+						<p className="title">Log in</p>
+					</div>
+					<div>
+						<input type="text" placeholder="Correo" onChange={e => setUsername(e.target.value)} />
+						<label className="fa fa-user ml-2" />
+					</div>
 
-						<div>
-							<input
-								type="password"
-								placeholder="Contraseña"
-								onChange={e => setPassword(e.target.value)}
-							/>
+					<div>
+						<input type="password" placeholder="Contraseña" onChange={e => setPassword(e.target.value)} />
 
-							<label className="fa fa-key" />
-						</div>
-						<div>
-							<button type="submit">
-								<label className="spinner" />
-								<span className="state">Log in</span>
-							</button>
-						</div>
+						<label className="fa fa-key" />
+					</div>
+					<div>
+						<button type="submit">
+							<label className="spinner" />
+							<span className="state">Log in</span>
+						</button>
 					</div>
 				</form>
 			</div>
