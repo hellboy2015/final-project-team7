@@ -50,7 +50,7 @@ export const Actualizardatos = () => {
 		fetch("https://busca-pyme.herokuapp.com/api/actualizapyme", requestOptions)
 			.then(response => response.json())
 			.then(result => {
-				console.log(result);
+				console.log(alert(result.msg));
 			})
 			.catch(error => console.log("error", error));
 	};

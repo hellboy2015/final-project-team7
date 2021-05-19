@@ -11,6 +11,7 @@ export const Cambiocontrasena = () => {
 	const [oldPassword, setOldPassword] = useState("");
 	const [newPAssword, setNewPAssword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
+	const [auth, setAuth] = useState(false);
 
 	const handleCambioContrasena = e => {
 		e.preventDefault();
@@ -47,7 +48,8 @@ export const Cambiocontrasena = () => {
 		fetch("https://busca-pyme.herokuapp.com/api/CambioContrasena", requestOptions)
 			.then(response => response.json())
 			.then(result => {
-				console.log(result.msg);
+				alert(result.msg);
+				result ? setAuth(true) : "";
 			})
 			.catch(error => console.log("error", error));
 	};
@@ -102,6 +104,7 @@ export const Cambiocontrasena = () => {
 					</form>
 				</div>
 			</div>
+			{auth ? <Redirect to={"actualizardatos"} /> : null}
 		</div>
 	);
 };

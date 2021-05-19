@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 export const Registropymes = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-	const [loginRoute, setLoginRoute] = useState("/");
+	const [loginRoute, setLoginRoute] = useState("registropymes");
 	const [auth, setAuth] = useState(false);
 	const { store, actions } = useContext(Context);
 	let myStorage = window.sessionStorage;
@@ -34,13 +34,18 @@ export const Registropymes = () => {
 				console.log("result", result.token);
 				// añadir token a session
 				sessionStorage.setItem("my_token", result.token);
+				if (myStorage.my_token === "undefined") {
+					alert("Wrong Username or Password.");
+				} else {
+					alert("Login was successful.");
+				}
+
 				if (result.idTipo === 2) {
 					setLoginRoute("actualizardatos");
 				}
 				if (result.idTipo === 1) {
 					setLoginRoute("creacionusuario");
 				}
-				console.log("myStorage", myStorage);
 				result ? setAuth(true) : "";
 				// let token = sessionStorage.getItem("my_token")
 			})

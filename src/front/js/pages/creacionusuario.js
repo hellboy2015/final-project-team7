@@ -34,7 +34,7 @@ export const Creacionusuario = () => {
 		fetch("https://busca-pyme.herokuapp.com/api/UsuarioNuevo", requestOptions)
 			.then(response => response.json())
 			.then(result => {
-				console.log(result);
+				alert(result);
 			})
 			.catch(error => console.log("error", error));
 	};
