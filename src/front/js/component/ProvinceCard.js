@@ -12,8 +12,6 @@ export default function ProvinceCard(props) {
 				backgroundSize: "cover",
 				backgroundRepeat: "no-repeat"
 			}}>
-			{/* <img src={props.imagen} className="card-img-top rounded-circle w-custom" /> */}
-
 			<div className="">
 				<Link className="card-title-custom" to={"/provincia/" + props.route}>
 					{props.provinceName}

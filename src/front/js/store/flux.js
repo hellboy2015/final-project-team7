@@ -70,7 +70,7 @@ const getState = ({ getActions, setStore }) => {
 
 				const data = await response.json();
 
-				console.log("test", data);
+				/* console.log("test", data); */
 				setStore({ provincia: data });
 			}
 		}

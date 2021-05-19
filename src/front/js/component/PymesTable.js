@@ -45,7 +45,8 @@ function ajusteNombreProvincia(nombreProvincia) {
 
 export default function PymesTable() {
 	const classes = useStyles();
-
+	const { store, actions } = useContext(Context);
+	const params = useParams();
 	const columnsName = [
 		"#",
 		"Provincia",
@@ -57,15 +58,13 @@ export default function PymesTable() {
 		"Facebook",
 		"Instagram"
 	];
-
-	const { store, actions } = useContext(Context);
-	const params = useParams();
+	actions.loadProvincias();
 
 	useEffect(() => {
 		actions.loadProvincia(idProvincia);
 	}, []);
 
-	let idProvincia = store.provincias.find(x => x.nombre === ajusteNombreProvincia(params.nombre)).id;
+	//let idProvincia = store.provincias.find(x => x.nombre === ajusteNombreProvincia(params.nombre)).id;
 
 	return (
 		<TableContainer component={Paper}>

@@ -51,7 +51,7 @@ export const Actualizardatos = () => {
 		fetch("https://busca-pyme.herokuapp.com/api/actualizapyme", requestOptions)
 			.then(response => response.json())
 			.then(result => {
-				console.log(alert(result.msg));
+				alert(result.msg);
 			})
 			.catch(error => console.log("error", error));
 	};
@@ -113,6 +113,9 @@ export const Actualizardatos = () => {
 
 	useEffect(() => {
 		handleCargaDatosDesdeDB();
+		actions.loadCantones();
+		actions.loadProvincias();
+		actions.loadServicios();
 		console.log(dbResult);
 		//console.log(users[0].canton);
 		//console.log(dbResult[0]);
@@ -126,9 +129,13 @@ export const Actualizardatos = () => {
 						<p className="title pb-0">Actualiza tus datos</p>
 					</div>
 					<div className="form-login mb-2">
-						<select className="form-login" id="provincia" onChange={e => handleProviniciaCanton(e)}>
+						<select
+							className="form-login"
+							id="provincia"
+							onChange={e => handleProviniciaCanton(e)}
+							defaultValue="0">
 							{
-								<option hidden disabled selected value>
+								<option hidden disabled value="0">
 									{provinciaId === ""
 										? "-- Seleccione una provincia --"
 										: store.provincias.find(x => x.id === provinciaId).nombre}
@@ -142,14 +149,11 @@ export const Actualizardatos = () => {
 						</select>
 					</div>
 					<div className="form-login mb-2">
-						<select
-							className="form-login"
-							id="canton"
-							onChange={e => setCanton(parseInt(e.target.value))}
-							selected
-							value={canton == "" ? 0 : store.cantones.find(x => x.id === canton).nombre}>
+						<select className="form-login" id="canton" onChange={e => setCanton(parseInt(e.target.value))}>
 							<option id="defaultCanton" value="0">
-								-- Seleccione un Cantón: --
+								{canton == ""
+									? "-- Seleccione un Cantón: --"
+									: store.cantones.find(x => x.id === canton).nombre}
 							</option>
 							{store.cantones
 								.filter(cantonesToFilter => cantonesToFilter.id_provincias === provinciaId)
@@ -164,9 +168,10 @@ export const Actualizardatos = () => {
 						<select
 							className="form-login"
 							id="servicios"
-							onChange={e => setTipoServicio(parseInt(e.target.value))}>
+							onChange={e => setTipoServicio(parseInt(e.target.value))}
+							defaultValue="0">
 							{
-								<option hidden disabled selected value>
+								<option hidden disabled value="0">
 									{tipoServicio === ""
 										? "-- Seleccione un servicio --"
 										: store.servicios.find(x => x.id === tipoServicio).tipo}
