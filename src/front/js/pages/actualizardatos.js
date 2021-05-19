@@ -14,6 +14,7 @@ export const Actualizardatos = () => {
 	const [instagram, setInstagram] = useState("");
 	const [facebook, setFacebook] = useState("");
 	const [token, setToken] = useState(sessionStorage.getItem("my_token"));
+	const [dbResult, setDBResult] = useState([]);
 
 	/* const handleSelect = e => {
         setProvinciaId(parseInt(e.target.value));
@@ -77,6 +78,46 @@ export const Actualizardatos = () => {
         console.log(JSON.stringify(body));
     }; */
 
+	async function handleCargaDatosDesdeDB() {
+		console.log(token);
+		if (!token) {
+			return;
+		}
+		var requestOptions = {
+			method: "GET",
+			headers: new Headers({
+				"Content-Type": "application/json",
+				Accept: "*/*",
+				Authorization: "Bearer " + token
+			})
+		};
+
+		async function getData() {
+			const response = await fetch("https://busca-pyme.herokuapp.com/api/actualizadatos", requestOptions);
+			const users = await response.json();
+			console.log(users);
+			setOtrasSenas(users[0].otrasSenas);
+			setFacebook(users[0].facebook);
+			setInstagram(users[0].instagram);
+			setTelefono(users[0].telefono);
+			setTipoServicio(users[0].tipoServicio);
+			setNombrePyme(users[0].nombrePyme);
+			setCanton(users[0].canton);
+			setProvinciaId(users[0].provincia);
+
+			return users;
+		}
+
+		await setDBResult({ dbResult: getData()[0] });
+	}
+
+	useEffect(() => {
+		handleCargaDatosDesdeDB();
+		console.log(dbResult);
+		//console.log(users[0].canton);
+		//console.log(dbResult[0]);
+	}, []);
+
 	return (
 		<div className="wrapper">
 			<div className="text-white login">
@@ -86,7 +127,13 @@ export const Actualizardatos = () => {
 					</div>
 					<div className="form-login mb-2">
 						<select className="form-login" id="provincia" onChange={e => handleProviniciaCanton(e)}>
-							<option value>-- Seleccione una Provincia: --</option>
+							{
+								<option hidden disabled selected value>
+									{provinciaId === ""
+										? "-- Seleccione una provincia --"
+										: store.provincias.find(x => x.id === provinciaId).nombre}
+								</option>
+							}
 							{store.provincias.map(item => (
 								<option key={item.id} value={item.id}>
 									{item.nombre}
@@ -99,7 +146,8 @@ export const Actualizardatos = () => {
 							className="form-login"
 							id="canton"
 							onChange={e => setCanton(parseInt(e.target.value))}
-							value={canton}>
+							selected
+							value={canton == "" ? 0 : store.cantones.find(x => x.id === canton).nombre}>
 							<option id="defaultCanton" value="0">
 								-- Seleccione un Cantón: --
 							</option>
@@ -117,9 +165,13 @@ export const Actualizardatos = () => {
 							className="form-login"
 							id="servicios"
 							onChange={e => setTipoServicio(parseInt(e.target.value))}>
-							<option hidden disabled selected value>
-								-- Seleccione un Servicio --
-							</option>
+							{
+								<option hidden disabled selected value>
+									{tipoServicio === ""
+										? "-- Seleccione un servicio --"
+										: store.servicios.find(x => x.id === tipoServicio).tipo}
+								</option>
+							}
 							{store.servicios.map(item => (
 								<option key={item.id} value={item.id}>
 									{item.tipo}
@@ -132,6 +184,7 @@ export const Actualizardatos = () => {
 						<input
 							type="text"
 							placeholder="Nombre Pymes"
+							value={nombrePyme}
 							className="form-login"
 							id="nombrePyme"
 							onChange={e => setNombrePyme(e.target.value)}
@@ -141,7 +194,8 @@ export const Actualizardatos = () => {
 					<div className="form-login">
 						<input
 							type="text"
-							placeholder="Teléfono"
+							placeholder={"Teléfono"}
+							value={telefono}
 							className="form-login"
 							id="telefono"
 							onChange={e => setTelefono(e.target.value)}
@@ -151,6 +205,7 @@ export const Actualizardatos = () => {
 						<input
 							type="text"
 							placeholder="Otras Señas"
+							value={otrasSenas}
 							className="form-login"
 							id="otrasSenas"
 							onChange={e => setOtrasSenas(e.target.value)}
@@ -159,7 +214,8 @@ export const Actualizardatos = () => {
 					<div className="form-login">
 						<input
 							type="text"
-							placeholder="Instagram"
+							placeholder={"Instagram"}
+							value={instagram}
 							className="form-login"
 							id="instagram"
 							onChange={e => setInstagram(e.target.value)}
@@ -169,6 +225,7 @@ export const Actualizardatos = () => {
 						<input
 							type="text"
 							placeholder="Facebook"
+							value={facebook}
 							className="form-login"
 							id="facebook"
 							onChange={e => setFacebook(e.target.value)}
