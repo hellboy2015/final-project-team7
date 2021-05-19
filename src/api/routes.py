@@ -133,7 +133,7 @@ def login():
     user = User.query.filter_by(email=usuario).first()
 
     if not check_password_hash(user.contrasena,contrasena) or user is None:
-        return jsonify({"msg": "Bad username or password"}), 401
+        return jsonify({"msg": "Nombre de usuario o contraseña invalidos"}), 401
 
     access_token = create_access_token(identity=user.id)
 
@@ -193,7 +193,7 @@ def UsuarioNuevo():
 
         return jsonify("Registro correcto"), 200
     else:
-        return jsonify("Token invalid or expired"), 401
+        return jsonify("Token invalido o expiró"), 401
 
 @api.route('/actualizapyme', methods=['POST'])
 @jwt_required()
@@ -201,13 +201,29 @@ def ActualizaPyme():
 
     current_user_id = get_jwt_identity()
     user = User.query.filter_by(id=current_user_id).first()
-    user_has_pyme = Pyme.query.filter_by(id_user=current_user_id).first()
+    pyme = Pyme.query.filter_by(id_user=current_user_id).first()
+    print(pyme)
+    #current_user_id = get_jwt_identity()
+    #user = User.query.filter_by(id=current_user_id).first()
     
-    if user_has_pyme:
-        return jsonify({"msg": "User has an existing PYME registered"}), 401
+    if pyme is not None:
+        #pyme = Pyme()
+        pyme.nombre = request.json.get("nombrePyme", None)
+        pyme.id_provincia = request.json.get("provincia", None)
+        pyme.id_canton = request.json.get("canton", None)
+        pyme.id_tiposServicio = request.json.get("tipoServicio", None)
+        #pyme.id_user = current_user_id
+        pyme.otrassenas = request.json.get("otrasSenas", None)
+        pyme.telefono = request.json.get("telefono", None)
+        pyme.facebook = request.json.get("facebook", None)
+        pyme.instagram = request.json.get("instagram", None)
+        pyme.Imagen = "Test String"
+        db.session.commit()
 
-    if user is not None:
+        return jsonify({"msg": "Datos actualizados con exito"}), 200
 
+    if pyme is None:
+        pyme = Pyme()
         provincia = request.json.get("provincia", None)
         canton = request.json.get("canton", None)
         nombrePyme = request.json.get("nombrePyme", None)
@@ -232,9 +248,9 @@ def ActualizaPyme():
         db.session.add(pyme)
         db.session.commit()
 
-        return jsonify("Registro correcto"), 200
+        return jsonify({"msg": "Pyme creada"}), 200
     else:
-        return jsonify({"msg": "Token invalid or expired"}), 401
+        return jsonify({"msg": "Token invalido o expiró"}), 401
     
 @api.route('/CambioContrasena', methods=['POST'])
 @jwt_required()
@@ -264,8 +280,48 @@ def CambioContrasena():
     msg.body = "Su contrasena ha sido cambiada"
     mail.send(msg)
 
-    return jsonify({"msg": "Comtrasena cambiada correctamente"}), 200
+    return jsonify({"msg": "Contraseña cambió correctamente"}), 200
 
+@api.route('/actualizadatos', methods=['GET'])
+@jwt_required()
+def ActualizaDatos():
+
+    current_user_id = get_jwt_identity()
+    user = User.query.filter_by(id=current_user_id).first()
+    pyme = Pyme.query.filter_by(id_user=current_user_id).first()
+    
+    #if user_has_pyme:
+    #    return jsonify({"msg": "User has an existing PYME registered"}), 401
+
+    if pyme is not None:
+
+        data = [{
+            "exists": "Si",
+            "nombrePyme": pyme.nombre,
+            "provincia": pyme.id_provincia,
+            "canton": pyme.id_canton,
+            "tipoServicio": pyme.id_tiposServicio,
+            "otrasSenas": pyme.otrassenas,
+            "telefono": pyme.telefono,
+            "facebook": pyme.facebook,
+            "instagram": pyme.instagram,
+            "imagen": pyme.Imagen
+        }]
+    else:
+        data = [{
+            "exists": "No",
+            "nombrePyme": "",
+            "provincia": "",
+            "canton": "",
+            "tipoServicio": "",
+            "otrasSenas": "",
+            "telefono": "",
+            "facebook": "",
+            "instagram": "",
+            "imagen": ""
+        }]
+
+    return jsonify(data), 200
 
 #ESTE USUARIO ES PARA TEST Y PERMITE CREAR USUARIOS ADMIN
 #CREAR USUARIOS ADMIN DA UN PROBLEMA YA QUE EL PASS NO QUEDA HASHEADO
@@ -282,18 +338,13 @@ def AdminNuevo():
         text = r.read().decode('UTF-8')
         contrasena = json.loads(text)["pws"][0]
 
-        #return contrasena["pws"][0]
-
         msg = Message('Busc@PYME aviso', sender = 'dirpro4g@gmail.com', recipients = ['juanca86@gmail.com'])
-        msg.body = "Hola. Esta es la contrasena para su nueva cuenta con Busc@PYME: " + contrasena#["pws"][0]
+        msg.body = "Hola. Esta es la contrasena para su nueva cuenta con Busc@PYME: " + contrasena
         mail.send(msg)
-        #return "Sent"
 
     if user is not None:
 
         email = request.json.get("email", None)
-        #contrasena = request.json.get("contrasena", None)
-        #token = request.json.get("token", None)
 
         if not email:
             return jsonify({"msg":"Email required"}), 400
@@ -307,7 +358,6 @@ def AdminNuevo():
         user.activo = True
         user.id_tipo = 1
 
-        #usuarioNuevo = User(email=email, contrasena=contrasena, activo=True, id_tipo=2)
         db.session.add(user)
         db.session.commit()
 
