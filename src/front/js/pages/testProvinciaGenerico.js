@@ -65,8 +65,14 @@ export const ProvinciaGenerico = props => {
 							<td>{store.servicios.find(x => x.id === item.id_tiposServicio).tipo}</td>
 							<td>{item.telefono}</td>
 							<td>{item.otrassenas}</td>
-							<td> {item.facebook}</td>
-							<td>{item.instagram}</td>
+							<td>
+								{" "}
+								<a href="https://www.facebook.com"> {item.facebook} </a>
+							</td>
+							<td>
+								{" "}
+								<a href="https://www.instagram.com"> {item.instagram} </a>
+							</td>
 						</tr>
 					))}
 				</tbody>

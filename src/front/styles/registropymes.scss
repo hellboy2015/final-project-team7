@@ -3,7 +3,7 @@ $primary: #2196F3;
 body {
   font-family: "Open Sans", sans-serif;
   height: 100vh;
-  background: url("https://images.pexels.com/photos/176851/pexels-photo-176851.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940") 50% fixed;
+  background: url("https://images.pexels.com/photos/2387876/pexels-photo-2387876.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500") 50% fixed;
   background-size: cover;
 }
 
@@ -22,6 +22,13 @@ body {
   flex-direction: column; 
   justify-content: center;
   width: 100%;
+  height: 100%;
+  padding: 20px;
+  background: rgba(darken($primary,40%), 0.85);
+}
+
+.pymeTable {
+  width: 100%;
   min-height: 100%;
   padding: 20px;
   background: rgba(darken($primary,40%), 0.85);
@@ -30,14 +37,14 @@ body {
 
 .login {
   
-  border-radius: 2px 2px 5px 5px;
+  border-radius: 2px ;
   padding: 10px 20px 20px 20px;
-  width: 90%;
+  width: 100%;
   max-width: 320px;
-  background: #ffffff;
+  background: #212529;
   position: relative;
-  padding-bottom: 80px;
-  box-shadow: 0px 1px 5px rgba(0,0,0,0.3);
+  padding-bottom: 75px;
+ 
   
   &.loading {
     button {
@@ -52,7 +59,7 @@ body {
   
   &.ok {
     button {
-      background-color: #8bc34a;
+      background-color:#212529;
       .spinner{
         border-radius: 0;
         border-top-color: transparent;
@@ -66,36 +73,11 @@ body {
   
   input {
     display: block;
-    padding: 15px 10px;
     margin-bottom: 10px;
     width: 100%;
     border: 1px solid #ddd;
     transition: border-width 0.2s ease;
-    border-radius: 2px;
-    color: #ccc;
-    
-    &+ i.fa {
-        color: #fff;
-      font-size: 1em;
-      position: absolute;
-      margin-top: -47px;
-      opacity: 0;
-      left: 0;
-      transition: all 0.1s ease-in;
-    }
-    
-    &:focus {
-      &+ i.fa {
-        opacity: 1;
-        left: 30px;
-      transition: all 0.25s ease-out;
-      }
-      outline: none;
-      color: #444;
-      border-color: $primary;
-      border-left-width: 35px;
-    }
-    
+    border-radius: 2px;    
   }
   
   a {
@@ -105,7 +87,7 @@ body {
   }
   
   .title {
-    color: #444;
+    color: #fff;
     font-size: 1.2em;
     font-weight: bold;
     margin: 10px 0 30px 0;
@@ -118,7 +100,7 @@ body {
     height: 100%;
     padding: 10px 10px;
     background: $primary;
-    color: #fff;
+    color: #212529;
     display: block;
     border: none;
     margin-top: 20px;
@@ -159,7 +141,7 @@ body {
       box-shadow: 0px 1px 3px $primary;
     }
     &:not(.loading) button:focus {
-      border-bottom-width: 4px;
+      border-bottom-width: 6px;
     }
     
   
@@ -177,4 +159,13 @@ footer {
     color: #fff;
     text-decoration: none;
   }
+}
+
+.registroForm {
+    width: 500px;
+}
+
+.img-fluid-home{
+    width: 100%;
+    height: auto;
 }

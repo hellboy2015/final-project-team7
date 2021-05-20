@@ -1,11 +1,8 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import logo from "../../img/logoproyecto.png";
-import LoginButton from "./LoginButton";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
-import NavButtons from "./NavButtons";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link, useLocation } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -35,21 +32,27 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-export const Navbar = () => {
+export default function NavButtons() {
 	const classes = useStyles();
-	const location = useLocation();
 	const routeName = location.pathname.split("/")[1];
 
 	return (
-		<nav className="navbar bg-dark">
-			<Link className="navbar-brand" to="/">
-				<img className="w-25" src={logo} />
-			</Link>
-			<div className="ml-auto">
-				<ButtonGroup size="large" color="primary" aria-label="large outlined primary button group">
-					{/* routeName === "actualizardatos" &&  */ <NavButtons />}
-				</ButtonGroup>
-			</div>
-		</nav>
+		<div className={classes.root}>
+			<ButtonGroup size="large" color="primary" aria-label="large outlined primary button group">
+				<Button className={classes.button}>
+					<Link className={classes.links} to="/registropymes">
+						Ingreso al Sistema
+					</Link>
+				</Button>
+
+				{routeName === "actualizardatos" && (
+					<Button className={classes.button}>
+						<Link className={classes.links} to="/cambiocontrasena">
+							Cambio Contraseña
+						</Link>
+					</Button>
+				)}
+			</ButtonGroup>
+		</div>
 	);
-};
+}
